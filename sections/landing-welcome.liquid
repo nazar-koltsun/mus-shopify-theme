@@ -1,1 +1,23 @@
-Welcome to the landing page
+{{ 'landing-welcome.css' | asset_url | stylesheet_tag }}
+
+{% assign default_bg = 'landing-welcome-bg.jpg' | asset_url %}
+{% assign bg_image = section.settings.background_image | image_url: width: 1920 | default: default_bg %}
+
+<section class="welcome" style="background-image: url({{ bg_image }});">
+  {{ bg_image }}
+  welcome
+</section>
+
+
+{% schema %}
+{
+  "name": "Landing Welcome",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ]
+}
+{% endschema %}
