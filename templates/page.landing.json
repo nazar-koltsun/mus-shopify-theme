@@ -1,4 +1,6 @@
-{"sections": { 
+{
+  "layout": "landing",
+  "sections": { 
   "main": {
     "type": "main-landing",
     "settings": {}
