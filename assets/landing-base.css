@@ -1,24 +1,21 @@
 /* fonts */
-/* @font-face {
-  font-family: 'FFF Tusj';
-  src: url('{{ "ffftusj.woff2" | asset_url }}') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-
 @font-face {
   font-family: 'FFF Tusj';
-  src: url('{{ "ffftusj.ttf" | asset_url }}') format('ttf');
+  src: url('ffftusj.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: normal;
 }
 
 :root {
   /* colors */
 
   --blue: #0b76db;
+  --black: #0c1524;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -49,4 +46,10 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

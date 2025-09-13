@@ -8,10 +8,7 @@
   {% assign bg_image = default_bg %}
 {% endif %}
 
-<section 
-  class="welcome" 
-  style="background-image: url('{{ bg_image }}');"
->
+<article class="welcome" style="background-image: url('{{ bg_image }}');">
   <div class="welcome-wrapper">
     <div class="welcome-title-wrapper">
       <p class="welcome-subtitle">
@@ -20,31 +17,80 @@
       <h1 class="welcome-title">
         {{ section.settings.title }}
       </h1>
-    </div>
+      <p class="welcome-title-bottom">
+        {{ section.settings.title_bottom }}
+      </p>
+      <p class="welcome-description">
+        {{ section.settings.description }}
+      </p>
+      </div>
+
+      <div class="welcome-bundle">
+        <p class="welcome-bundle-title">
+          {{ section.settings.bundle_title }}
+        </p>
+
+        <ul class="welcome-bundle-list">
+          <li class="welcome-bundle-item">
+            <h3 class="welcome-bundle-title">The Essentials Bundle</h3>
+
+            <img class="welcome-bundle-image" src="{{ 'landing-welcome-bundle-1.png' | asset_url }}" width="145" height="173" alt="The Essentials Bundle">
+
+            <div class="welcome-bundle-price">
+              <span class="welcome-bundle-price-old">
+                $74
+              </span>
+              <span class="welcome-bundle-price-new">
+                $59
+              </span>
+              <span class="welcome-bundle-price-save">
+                Save 25%
+              </span>
+            </div>
+
+          </li>
+        </ul>
+      </div>  
   </div>
-</section>
+</article>
 
 {% schema %}
-{
-  "name": "Landing Welcome",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "WELCOME TO"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "DRUM SCHOOL"
-    }
-  ]
-}
+  {
+    "name": "Landing Welcome",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      }, {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "WELCOME TO"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "DRUM SCHOOL"
+      },
+      {
+        "type": "text",
+        "id": "title_bottom",
+        "label": "Title Bottom",
+        "default": "Get a free QuietPad, Sticks, and PadStand when you join Drumeo."
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "Whether you're brand new to the kit, coming back after some time away, or looking to level up your skills, you'll find the perfect deal with Drumeo's Back to School Sale."
+      },
+      {
+        "type": "text",
+        "id": "bundle_title",
+        "label": "Bundle Title",
+        "default": "Choose the bundle that's best for you:"
+      }
+    ]
+  }
 {% endschema %}
