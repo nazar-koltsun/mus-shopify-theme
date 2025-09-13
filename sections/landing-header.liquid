@@ -1,6 +1,32 @@
 {{ 'landing-header.css' | asset_url | stylesheet_tag }}
 
-<div class="header-wrapper">
+{% assign logo_image = 'drumeo-logo.svg' %}
 
+{% if section.settings.logo != blank %}
+  {% assign logo_image = section.settings.logo %}
+{% endif %}
+
+{% comment %} The original line was outputting a URL directly, which is not valid Liquid output for an image. If you want to display the image, use an <img> tag as below: {% endcomment %}
+<img src="{{ logo_image | image_url: width: 100 }}" alt="Logo" width="100">
+
+<div class="header-wrapper">
+  <img
+    src="{{ logo_image | image_url: width: 100 }}"
+    alt="Logo"
+    class="header-logo"
+    width="180"
+    height="45">
 </div>
 
+{% schema %}
+  {
+    "name": "Landing Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ]
+  }
+{% endschema %}
