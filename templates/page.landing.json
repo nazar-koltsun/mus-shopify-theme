@@ -1,10 +1,10 @@
 {
   "layout": "landing",
   "sections": { 
-    "main": {
-      "type": "main-landing",
+    "welcome": {
+      "type": "landing-welcome",
       "settings": {}
       }
     },
-  "order":["main"]
+  "order":["welcome"]
 }

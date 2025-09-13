@@ -1,4 +1,38 @@
 .header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
   padding: 22px 35px;
   background-color: #00101D;
+}
+
+.header-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-nav-btn:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    padding: 13px 20px;
+  }
+
+  .header-logo {
+    width: 127px;
+    height: auto;
+  }
+
+  .header-nav-btn svg {
+    width: 14px;
+    height: 14px;
+  }
 }
