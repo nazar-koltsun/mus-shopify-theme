@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "description": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_quantity": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "dropdown_information_PJRjYm": {
+          "type": "dropdown_information",
+          "disabled": true,
+          "settings": {
+            "characteristics": false,
+            "heading": "Instructor",
+            "description": "<p>{{ product.metafields.custom.challenges_teachers.value.bio_text | metafield_tag }}</p>",
+            "button_show": false,
+            "button_label": "Button label",
+            "button_link": "",
+            "default_open": false
+          }
+        },
+        "dropdown_information_CPpHad": {
+          "type": "dropdown_information",
+          "disabled": true,
+          "settings": {
+            "characteristics": false,
+            "heading": "What To Expect",
+            "description": "<p>{{ product.metafields.custom.benefits_whats_included.value.row_content_1 | metafield_tag }}{{ product.metafields.custom.benefits_whats_included.value.row_content_2 | metafield_tag }}</p>",
+            "button_show": false,
+            "button_label": "Button label",
+            "button_link": "",
+            "default_open": false
+          }
+        },
+        "tags": {
+          "type": "tags",
+          "settings": {}
+        },
+        "text_with_icon_mmgLxx": {
+          "type": "text_with_icon",
+          "disabled": true,
+          "settings": {
+            "show_text_with_icon_1": true,
+            "icon_1": "video",
+            "text_1": "4 Weeks",
+            "show_text_with_icon_2": true,
+            "icon_2": "dumbbell",
+            "text_2": "20 Workouts",
+            "box_shadow": true,
+            "icon_style": "colored",
+            "icon_fill_type": "gradient"
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "dropdown_information_PJRjYm",
+        "dropdown_information_CPpHad",
+        "tags",
+        "text_with_icon_mmgLxx",
+        "pickup_availability"
+      ],
+      "settings": {
+        "desktop_alignment": "right",
+        "mobile_alignment": "before",
+        "gallery_type": "slider_bullets",
+        "aspect_ratio": "adapt",
+        "image_fit": "cover",
+        "image_fit_modal": "contain",
+        "padding_bottom": "l"
+      }
+    },
+    "video_banner_2_paQXGn": {
+      "type": "video-banner-2",
+      "name": "Video Banner with Header Image and Modal",
+      "settings": {
+        "video_url": "{{ product.metafields.custom.video_banner.value.video_link.value }}",
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_size": 36,
+        "mobile_heading_size": 24,
+        "heading_line_height": 7,
+        "subtext": "",
+        "subtext_color": "#ffffff",
+        "subtext_size": 18,
+        "mobile_subtext_size": 14,
+        "video_controls": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "section_height": 500,
+        "button_label": "Watch Trailer",
+        "button_link": "{{ product.metafields.custom.video_banner.value.button_link.value }}",
+        "secondary_button_style": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "background-1",
+        "subheading": "Subheading",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "You May Also Like",
+        "heading_size": "h2",
+        "text": "Some description",
+        "products_limit": 6,
+        "image_ratio": "5/4",
+        "image_fit": "cover",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_desc": true,
+        "padding_top": "l",
+        "padding_bottom": "l"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_banner_2_paQXGn",
+    "product-recommendations"
+  ]
+}

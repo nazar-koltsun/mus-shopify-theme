@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.footer.settings.footer-group.label",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "logo_info_p4AXmk": {
+          "type": "logo_info",
+          "settings": {
+            "logo": "shopify://shop_images/Musora-Light_1.png",
+            "logo_width": 145,
+            "description": "<a href=\"https://goo.gl/maps/c4JxakSmnjB2\" target=\"_blank\">107-31265 Wheel Ave. Abbotsford, BC, V2T 6H2 Canada</a>"
+          }
+        },
+        "contacts_i33MUM": {
+          "type": "contacts",
+          "settings": {
+            "heading": "Call Us",
+            "contact_info": "<p><a href=\"tel:+18004398921\">Toll Free: 1-800-439-8921</a></p><p><a href=\"tel:+16048557605\">Direct: 1-604-855-7605</a></p>",
+            "default_open": false
+          }
+        },
+        "subscribe_wgWjDL": {
+          "type": "subscribe",
+          "settings": {
+            "color_scheme_subscribe": "background-3",
+            "enable_box_shadow": true,
+            "heading": "Stay Connected",
+            "text": "Join over 400,000 musicians who receive free weekly lessons.",
+            "additional_text": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "logo_info_p4AXmk",
+        "contacts_i33MUM",
+        "subscribe_wgWjDL"
+      ],
+      "settings": {
+        "color_scheme": "background-3",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_social": true,
+        "enable_copyright_date": true,
+        "enable_copyright_shopname": true,
+        "menu_bottom": "main-menu",
+        "show_policy": true,
+        "enable_follow_on_shop": false
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

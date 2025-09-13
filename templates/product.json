@@ -1,0 +1,742 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "description": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_quantity": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "dropdown_information_PJRjYm": {
+          "type": "dropdown_information",
+          "settings": {
+            "characteristics": false,
+            "heading": "Instructor",
+            "description": "{{ product.metafields.custom.challenges_teachers.value.instructor_description | metafield_tag }}",
+            "button_show": false,
+            "button_label": "Button label",
+            "button_link": "",
+            "default_open": false
+          }
+        },
+        "dropdown_information_CPpHad": {
+          "type": "dropdown_information",
+          "settings": {
+            "characteristics": false,
+            "heading": "{{ product.metafields.custom.benefits_whats_included.value.heading.value }}",
+            "description": "<p>{{ product.metafields.custom.benefits_whats_included.value.row_content_1 | metafield_tag }}</p>",
+            "button_show": false,
+            "button_label": "Button label",
+            "button_link": "",
+            "default_open": false
+          }
+        },
+        "dropdown_information_iDpHnb": {
+          "type": "dropdown_information",
+          "settings": {
+            "characteristics": false,
+            "heading": "{{ product.metafields.custom.benefits_whats_included.value.heading_2.value }}",
+            "description": "<p>{{ product.metafields.custom.benefits_whats_included.value.row_content_2 | metafield_tag }}</p>",
+            "button_show": false,
+            "button_label": "Button label",
+            "button_link": "",
+            "default_open": false
+          }
+        },
+        "tags": {
+          "type": "tags",
+          "disabled": true,
+          "settings": {}
+        },
+        "text_with_icon_mmgLxx": {
+          "type": "text_with_icon",
+          "disabled": true,
+          "settings": {
+            "show_text_with_icon_1": true,
+            "icon_1": "video",
+            "text_1": "4 Weeks",
+            "show_text_with_icon_2": true,
+            "icon_2": "dumbbell",
+            "text_2": "20 Workouts",
+            "box_shadow": true,
+            "icon_style": "colored",
+            "icon_fill_type": "gradient"
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "inventory",
+        "buy_buttons",
+        "dropdown_information_PJRjYm",
+        "dropdown_information_CPpHad",
+        "dropdown_information_iDpHnb",
+        "tags",
+        "text_with_icon_mmgLxx",
+        "pickup_availability"
+      ],
+      "settings": {
+        "desktop_alignment": "right",
+        "mobile_alignment": "before",
+        "gallery_type": "slider_bullets",
+        "aspect_ratio": "1/1",
+        "image_fit": "contain",
+        "image_fit_modal": "contain",
+        "padding_bottom": "l"
+      }
+    },
+    "video_U4mjAh": {
+      "type": "video",
+      "disabled": true,
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "dynamic_video_url": "{{ product.metafields.custom.trailer.value }}",
+        "color_scheme": "",
+        "full_width": true,
+        "height": "21/9",
+        "video_fit": "contain",
+        "subheading": "",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "{{ product.metafields.custom.trailer_headline.value }}",
+        "heading_size": "h3",
+        "heading_level": "h1",
+        "opacity_overlay": 0.9,
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_autoplay": false,
+        "video_loop": false,
+        "video_muted": false,
+        "video_controls": true,
+        "description": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_deQa9a": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "heading": "Happy student guarantee.",
+        "subheading": "Test-drive your lessons for 90 days. Zero risk.",
+        "description": "Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough – or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee. More than anything, we want to make sure you have a POSITIVE experience developing new skills and gaining confidence on the drums.",
+        "step_1_title": "Start your lessons today.",
+        "step_2_title": "Enjoy them for 90 days, risk-free.",
+        "step_3_title": "Change your mind? Get a refund."
+      }
+    },
+    "video_banner_2_paQXGn": {
+      "type": "video-banner-2",
+      "name": "Video Banner with Header Image and Modal",
+      "settings": {
+        "video_url": "{{ product.metafields.custom.video_banner.value.video_link.value }}",
+        "modal_video_url": "{{ product.metafields.custom.video_banner.value.button_link.value }}",
+        "heading": "{{ product.metafields.custom.video_banner.value.heading.value }}",
+        "heading_color": "#ffffff",
+        "heading_size": 46,
+        "mobile_heading_size": 22,
+        "heading_line_height": 7,
+        "heading_padding_horizontal": 20,
+        "subtext": "",
+        "subtext_color": "#ffffff",
+        "subtext_size": 18,
+        "mobile_subtext_size": 14,
+        "video_controls": "none",
+        "overlay_color": "#000000",
+        "overlay_opacity": 58,
+        "button_label": "Watch Trailer",
+        "button_link": "{{ product.metafields.custom.video_banner.value.button_link.value }}",
+        "secondary_button_style": true
+      }
+    },
+    "multicolumn_nQQxaK": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_qm7jey": {
+          "type": "column",
+          "settings": {
+            "icon": "none",
+            "icon_color_scheme": "",
+            "icon_fill_type": "gradient",
+            "image": "{{ product.metafields.custom.challenges_multi_column_features.value.image_icon.value }}",
+            "heading": "{{ product.metafields.custom.challenges_multi_column_features.value.header_1.value }}",
+            "text": "<p>{{ product.metafields.custom.challenges_multi_column_features.value.body_1 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_label": "Label",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        },
+        "column_Xm974E": {
+          "type": "column",
+          "settings": {
+            "icon": "none",
+            "icon_color_scheme": "",
+            "icon_fill_type": "gradient",
+            "image": "{{ product.metafields.custom.challenges_multi_column_features.value.image_icon_2.value }}",
+            "heading": "{{ product.metafields.custom.challenges_multi_column_features.value.header_2.value }}",
+            "text": "<p>{{ product.metafields.custom.challenges_multi_column_features.value.body_2 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_label": "Label",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        },
+        "column_J6e9Wz": {
+          "type": "column",
+          "settings": {
+            "icon": "none",
+            "icon_color_scheme": "",
+            "icon_fill_type": "gradient",
+            "image": "{{ product.metafields.custom.challenges_multi_column_features.value.image_icon_3.value }}",
+            "heading": "{{ product.metafields.custom.challenges_multi_column_features.value.header_3.value }}",
+            "text": "<p>{{ product.metafields.custom.challenges_multi_column_features.value.body_3 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_label": "Label",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        },
+        "column_mNWcAC": {
+          "type": "column",
+          "settings": {
+            "icon": "none",
+            "icon_color_scheme": "",
+            "icon_fill_type": "gradient",
+            "image": "{{ product.metafields.custom.challenges_multi_column_features.value.image_icon_4.value }}",
+            "heading": "{{ product.metafields.custom.challenges_multi_column_features.value.header_4.value }}",
+            "text": "<p>{{ product.metafields.custom.challenges_multi_column_features.value.body_4 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_label": "Label",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "column_qm7jey",
+        "column_Xm974E",
+        "column_J6e9Wz",
+        "column_mNWcAC"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "section_type": "transparent",
+        "color_scheme": "",
+        "enable_border": false,
+        "border_full": true,
+        "multicolumn_to_show": 3,
+        "gap": "medium",
+        "enable_mobile_overflow_slider": true,
+        "subtitle": "DETAILS",
+        "subheading": "",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "{{ product.metafields.custom.challenges_multi_column_features.value.section_header.value }}",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "heading_line": "simple",
+        "line_color": "#1566e0",
+        "word_break": false,
+        "heading_animation": "none",
+        "word_break_an": true,
+        "text": "",
+        "text_align": "left",
+        "icon_size": "recommended",
+        "box_shadow": false,
+        "icon_style": "colored",
+        "image_width": "full-width",
+        "image_ratio": "square",
+        "object_fit": "cover",
+        "card_heading_size": "h4",
+        "padding_top": "m",
+        "padding_bottom": "m",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "feature_section_WYmHQC": {
+      "type": "feature-section",
+      "name": "Feature Section",
+      "settings": {
+        "title": "{{ product.metafields.custom.keep_time.value.headline.value }}",
+        "subtitle": "{{ product.metafields.custom.keep_time.value.subheader.value }}",
+        "description": "{{ product.metafields.custom.keep_time.value.test_rich_text | metafield_tag }}",
+        "feature_image": "{{ product.metafields.custom.keep_time.value.image.value }}",
+        "background_color": "rgba(0,0,0,0)",
+        "title_color": "",
+        "padding_top": "6rem",
+        "padding_bottom": "6rem",
+        "padding_top_mobile": "2rem",
+        "padding_bottom_mobile": "2rem"
+      }
+    },
+    "steps_8nD7xz": {
+      "type": "steps",
+      "blocks": {
+        "step_nKfJPj": {
+          "type": "step",
+          "settings": {
+            "image": "{{ product.metafields.custom[\"3_point_benefits\"].value.image_1.value }}",
+            "number": "",
+            "heading": "{{ product.metafields.custom[\"3_point_benefits\"].value.caption.value }} {{ product.metafields.custom[\"3_point_benefits\"].value.headline.value }}",
+            "text": "<p>{{ product.metafields.custom[\"3_point_benefits\"].value.body_text_1 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_style": "simple",
+            "button_label": "Know More",
+            "button_link": ""
+          }
+        },
+        "step_4La8Ct": {
+          "type": "step",
+          "settings": {
+            "image": "{{ product.metafields.custom[\"3_point_benefits\"].value.image_2.value }}",
+            "number": "",
+            "heading": "{{ product.metafields.custom[\"3_point_benefits\"].value.caption_2.value }} {{ product.metafields.custom[\"3_point_benefits\"].value.headline_2.value }}",
+            "text": "<p>{{ product.metafields.custom[\"3_point_benefits\"].value.body_text_2 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_style": "simple",
+            "button_label": "Know More",
+            "button_link": ""
+          }
+        },
+        "step_dFnQqB": {
+          "type": "step",
+          "settings": {
+            "image": "{{ product.metafields.custom[\"3_point_benefits\"].value.image_3.value }}",
+            "number": "",
+            "heading": "{{ product.metafields.custom[\"3_point_benefits\"].value.headline_3.value }}",
+            "text": "<p>{{ product.metafields.custom[\"3_point_benefits\"].value.body_text_3 | metafield_tag }}</p>",
+            "show_button": false,
+            "button_style": "simple",
+            "button_label": "Know More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_nKfJPj",
+        "step_4La8Ct",
+        "step_dFnQqB"
+      ],
+      "name": "t:sections.steps.name",
+      "settings": {
+        "layout": "collapsible",
+        "color_scheme": "scheme-5054ec72-fe41-4eb3-b64b-2421ab344a6c",
+        "subheading": "{{ product.metafields.custom[\"3_point_benefits\"].value.section_subheader | metafield_tag }}",
+        "subheading_style": "body-large",
+        "subheading_icon": "none",
+        "heading": "{{ product.metafields.custom[\"3_point_benefits\"].value.section_header.value }}",
+        "heading_size": "h3",
+        "heading_level": "h3",
+        "heading_line": "simple",
+        "line_color": "#1566e0",
+        "word_break": false,
+        "heading_animation": "none",
+        "word_break_an": true,
+        "text": "",
+        "text_align": "center",
+        "columns_to_show": 3,
+        "image_ratio": "landscape",
+        "number_size": "recommended",
+        "step_heading_size": "recommended",
+        "text_size": "recommended",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "padding_horizontal": "m",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "image_size": "large"
+      }
+    },
+    "slideshow_section_d8hjPh": {
+      "type": "slideshow-section",
+      "blocks": {
+        "slide_z77cC6": {
+          "type": "slide",
+          "repeater": "{{ product.metafields.custom.physical_product_slideshow.value }}",
+          "settings": {
+            "image": "{{ block.repeater.image.value }}",
+            "heading": "<p>{{ block.repeater.heading.value }}</p>",
+            "description": "{{ block.repeater.slide_description | metafield_tag }}",
+            "tab_heading": "{{ block.repeater.product_name.value }}"
+          }
+        },
+        "slide_MrUeUM": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "",
+            "icon": "none",
+            "overlay_opacity": 0.5,
+            "show_video": false,
+            "loop_video": true,
+            "heading": "<p>Some heading</p>",
+            "heading_size": "recommended",
+            "heading_level": "h2",
+            "description": "<p>Some description</p>",
+            "tab_heading": "Heading",
+            "show_button": true,
+            "button_style": "simple_link",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_z77cC6",
+        "slide_MrUeUM"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "overlay",
+        "full_width": false,
+        "color_scheme": "",
+        "enable_border": false,
+        "border_full": false,
+        "subheading": "",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "heading_line": "simple",
+        "line_color": "#1566e0",
+        "word_break": false,
+        "text": "",
+        "heading_animation": "none",
+        "word_break_an": false,
+        "text_align": "left",
+        "height": "16/9",
+        "text_align_content": "bottom-left",
+        "enable_autoplay": true,
+        "enable_parallax": false,
+        "enable_pagination": true,
+        "pagination_type": "bullets",
+        "pagination_color_scheme": "",
+        "pagination_width": "medium",
+        "enable_navigation": false,
+        "navigation_color_scheme": "",
+        "slide_duration": 5,
+        "icon_size": "recommended",
+        "icon_style": "contrast",
+        "icon_fill_type": "solid",
+        "show_tab_icon": true,
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "modern_teacher_section_zjNFpA": {
+      "type": "modern-teacher-section",
+      "blocks": {
+        "stat_FtLgfj": {
+          "type": "stat",
+          "settings": {
+            "icon_type": "book-icon",
+            "icon_size": "medium",
+            "icon_color": "#ffffff",
+            "stat_number": "{{ product.metafields.custom.challenges_teachers.value.social_count_1.value }}",
+            "stat_text": "{{ product.metafields.custom.challenges_teachers.value.social_text.value }}"
+          }
+        },
+        "stat_x94PKW": {
+          "type": "stat",
+          "settings": {
+            "icon_type": "award-icon",
+            "icon_size": "medium",
+            "icon_color": "#ffffff",
+            "stat_number": "{{ product.metafields.custom.challenges_teachers.value.social_count_2.value }}",
+            "stat_text": "{{ product.metafields.custom.challenges_teachers.value.social_text_2.value }}"
+          }
+        },
+        "stat_eLVjEQ": {
+          "type": "stat",
+          "settings": {
+            "icon_type": "record-icon",
+            "icon_size": "medium",
+            "icon_color": "#ffffff",
+            "stat_number": "{{ product.metafields.custom.challenges_teachers.value.social_count_3.value }}",
+            "stat_text": "{{ product.metafields.custom.challenges_teachers.value.social_text_3.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "stat_FtLgfj",
+        "stat_x94PKW",
+        "stat_eLVjEQ"
+      ],
+      "name": "Modern Teacher Section",
+      "settings": {
+        "teacher_image": "{{ product.metafields.custom.challenges_teachers.value.main_image.value }}",
+        "subtitle": "Meet Your Instructor",
+        "teacher_name": "{{ product.metafields.custom.challenges_teachers.value.full_name.value }}",
+        "large_title": "",
+        "teacher_description": "<p>{{ product.metafields.custom.challenges_teachers.value.bio_text | metafield_tag }}</p>",
+        "background_color": "#000000",
+        "subtitle_color": "#ffffff",
+        "teacher_name_color": "#ffffff",
+        "text_color": "#ffffff",
+        "stats_color": "#ffffff"
+      }
+    },
+    "steps_9t9VQM": {
+      "type": "steps",
+      "blocks": {
+        "step_LhAJmQ": {
+          "type": "step",
+          "repeater": "{{ product.metafields.custom.course_accordion.value }}",
+          "settings": {
+            "image": "{{ block.repeater.image.value }}",
+            "number": "{{ block.repeater.title.value }}",
+            "heading": "",
+            "text": "<p>{{ block.repeater.description | metafield_tag }}</p>",
+            "show_button": false,
+            "button_style": "simple",
+            "button_label": "Know More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_LhAJmQ"
+      ],
+      "name": "t:sections.steps.name",
+      "settings": {
+        "layout": "scroll",
+        "color_scheme": "",
+        "subheading": "<p>{{ product.metafields.custom.kick_off_section.value.subheading | metafield_tag }}</p>",
+        "subheading_style": "body-large",
+        "subheading_icon": "none",
+        "heading": "{{ product.metafields.custom.kick_off_section.value.heading.value }}",
+        "heading_size": "h3",
+        "heading_level": "h3",
+        "heading_line": "simple",
+        "line_color": "#1566e0",
+        "word_break": false,
+        "heading_animation": "none",
+        "word_break_an": false,
+        "text": "",
+        "text_align": "center",
+        "columns_to_show": 3,
+        "image_ratio": "landscape",
+        "number_size": "h2",
+        "step_heading_size": "recommended",
+        "text_size": "body-normal",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "padding_horizontal": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "s",
+        "image_size": "large"
+      }
+    },
+    "guarantee_section_3kHQ4E": {
+      "type": "guarantee-section",
+      "name": "Guarantee Section",
+      "settings": {
+        "color_scheme": "",
+        "background_color": "{{ product.metafields.custom[\"90_day_guarantee_section\"].value.background_color_1.value }}",
+        "show_badge": true,
+        "custom_badge_image": "{{ product.metafields.custom[\"90_day_guarantee_section\"].value[\"90_day_badge\"].value }}",
+        "badge_height_mobile": 10,
+        "badge_height_desktop": 14.5,
+        "subheading": "<p>{{ product.metafields.custom[\"90_day_guarantee_section\"].value.subheader.value }}</p>",
+        "subheading_style": "h4 font-weight-normal",
+        "heading": "{{ product.metafields.custom[\"90_day_guarantee_section\"].value.header.value }}",
+        "heading_size": "h4",
+        "heading_level": "h3",
+        "text": "",
+        "text_align": "center",
+        "description": "<p>{{ product.metafields.custom[\"90_day_guarantee_section\"].value.body | metafield_tag }}</p>",
+        "padding_top": "xs",
+        "padding_bottom": "m",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "case_studies_GpLJGC": {
+      "type": "case-studies",
+      "blocks": {
+        "testimonials_slide_86GpMq": {
+          "type": "testimonials_slide",
+          "repeater": "{{ product.metafields.custom.testimonial_cards.value }}",
+          "settings": {
+            "rating": 5,
+            "slide_text": "<p>{{ block.repeater.testimonial | metafield_tag }}</p>",
+            "image": "{{ block.repeater.testimonial_image.value }}",
+            "slide_name": "{{ block.repeater.name.value }}",
+            "slide_position": "{{ block.repeater.course.value }}",
+            "slide_background_color": "#f3f3f3",
+            "section_background_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_slide_86GpMq"
+      ],
+      "name": "t:sections.case-studies.name",
+      "settings": {
+        "layout": "full_slider",
+        "color_scheme": "scheme-78934316-d2e9-4f03-881b-1bfca379c868",
+        "subheading": "<p>{{ product.metafields.custom.testimonial_text.value.sub_header | metafield_tag }}</p>",
+        "subheading_style": "body-large",
+        "subheading_icon": "none",
+        "heading": "{{ product.metafields.custom.testimonial_text.value.header.value }}",
+        "heading_size": "h3",
+        "heading_level": "h3",
+        "heading_line": "none",
+        "line_color": "rgba(0,0,0,0)",
+        "word_break": true,
+        "heading_animation": "appearing",
+        "word_break_an": false,
+        "text": "",
+        "text_align": "center",
+        "slide_color_scheme": "scheme-78934316-d2e9-4f03-881b-1bfca379c868",
+        "slide_text_size": "h5",
+        "enable_navigation": true,
+        "enable_navigation_mobile": false,
+        "navigation_color_scheme": "scheme-78934316-d2e9-4f03-881b-1bfca379c868",
+        "enable_pagination": true,
+        "enable_pagination_mobile": true,
+        "pagination_color_scheme": "scheme-78934316-d2e9-4f03-881b-1bfca379c868",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "background-1",
+        "subheading": "Subheading",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "You May Also Like",
+        "heading_size": "h2",
+        "text": "Some description",
+        "products_limit": 6,
+        "image_ratio": "5/4",
+        "image_fit": "cover",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_desc": true,
+        "padding_top": "l",
+        "padding_bottom": "l"
+      }
+    },
+    "collapsible_content_nKeCa9": {
+      "type": "collapsible-content",
+      "blocks": {
+        "accordion_ckznkM": {
+          "type": "accordion",
+          "repeater": "{{ product.metafields.custom.faqs_challenges_packs.value }}",
+          "settings": {
+            "question": "{{ block.repeater.question_1.value }}",
+            "answer": "<p>{{ block.repeater.answer_1 | metafield_tag }}</p>",
+            "opened": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_ckznkM"
+      ],
+      "name": "t:sections.collapsible-content.name",
+      "settings": {
+        "layout": "border",
+        "color_scheme": "scheme-5054ec72-fe41-4eb3-b64b-2421ab344a6c",
+        "enable_border": false,
+        "border_full": false,
+        "subheading": "",
+        "subheading_style": "subtitle",
+        "subheading_icon": "none",
+        "heading": "<strong>Still have questions?</strong>",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "heading_line": "simple",
+        "line_color": "#1566e0",
+        "word_break": false,
+        "heading_animation": "none",
+        "word_break_an": false,
+        "text": "",
+        "text_align": "center",
+        "row_color_scheme": "",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "17490632396cc98851": {
+      "type": "_blocks",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "video_U4mjAh",
+    "rich_text_deQa9a",
+    "video_banner_2_paQXGn",
+    "multicolumn_nQQxaK",
+    "feature_section_WYmHQC",
+    "steps_8nD7xz",
+    "slideshow_section_d8hjPh",
+    "modern_teacher_section_zjNFpA",
+    "steps_9t9VQM",
+    "guarantee_section_3kHQ4E",
+    "case_studies_GpLJGC",
+    "product-recommendations",
+    "collapsible_content_nKeCa9",
+    "17490632396cc98851"
+  ]
+}

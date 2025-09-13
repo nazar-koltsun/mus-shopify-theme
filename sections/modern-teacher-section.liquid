@@ -1,0 +1,321 @@
+{%- if product.type == 'Digital one time' and section.settings.teacher_image != blank -%}
+
+<div class="flex items-center justify-center text-center px-4 py-16 md:py-24 lg:py-36" style="background-color: {{ section.settings.background_color }};">
+  <div class="mx-auto">
+    
+    <!-- Badge/Logo -->
+    {% if section.settings.badge_image %}
+      <div class="mb-6">
+        <img src="{{ section.settings.badge_image | img_url: '80x80' }}" alt="Badge" class="w-20 h-20 rounded-full mx-auto border-2 border-white/20">
+      </div>
+    {% endif %}
+
+    <!-- Subtitle -->
+    {% if section.settings.subtitle %}
+      <p class="tracking-widest mb-4 uppercase font-normal" style="color: {{ section.settings.subtitle_color }};">
+        {{ section.settings.subtitle }}
+      </p>
+    {% endif %}
+
+    <!-- Teacher Name -->
+     {% if section.settings.teacher_name %}
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 md:mb-16 leading-none" style="color: {% if product.vendor == 'Drumeo' %}#0b76db{% elsif product.vendor == 'Pianote' %}#F61A30{% elsif product.vendor == 'Guitareo' %}#00c9ac{% elsif product.vendor == 'Singeo' %}#8300e9{% elsif product.vendor == 'Musora' %}#FFAE00{% else %}#FFFFFF{% endif %};">
+      {{ section.settings.teacher_name }}
+    </h1>
+      {% endif %}
+
+     {% if section.settings.teacher_image %}
+    <!-- Main Image -->
+    <div class="main-image mb-12 px-10 md:px-20 lg:px-40">
+      <img src="{{ section.settings.teacher_image | img_url: '1400x1800' }}" alt="{{ section.settings.teacher_name }}" class="mx-auto">
+    </div>
+       {% endif %}
+
+    <!-- Description -->
+   {% if section.settings.teacher_description %}
+    <div class="max-w-6xl mx-auto mb-12 md:pb-16 teacher-description" style="color: {{ section.settings.text_color }};">
+     {{ section.settings.teacher_description }}
+    </div>
+  {% endif %}
+
+    <!-- Stats -->
+    {% if section.blocks.size > 0 %}
+      <div class="flex flex-col justify-center items-center gap-4 md:gap-6">
+        {% for block in section.blocks %}
+          {% if block.type == 'stat' %}
+            {% if block.settings.stat_number != blank or block.settings.stat_text != blank %}
+              <div class="flex items-center gap-4" style="color: {{ section.settings.stats_color }};">
+                <!-- Icon -->
+                <div class="flex-shrink-0 stat-icon-{{ block.settings.icon_size | default: 'medium' }}" style="color: {% if product.vendor == 'Drumeo' %}#0b76db{% elsif product.vendor == 'Pianote' %}#F61A30{% elsif product.vendor == 'Guitareo' %}#00c9ac{% elsif product.vendor == 'Singeo' %}#8300e9{% elsif product.vendor == 'Musora' %}#FFAE00{% else %}#0B76DB{% endif %};">
+                  {% case block.settings.icon_type %}
+                    {% when 'book-icon' %}
+                      {% render 'book-icon' %}
+                    {% when 'award-icon' %}
+                      {% render 'award-icon' %}
+                    {% when 'record-icon' %}
+                      {% render 'record-icon' %}
+                    {% else %}
+                      {% render 'book-icon' %}
+                  {% endcase %}
+                </div>
+                <!-- Number and Text Inline -->
+                <div class="flex items-baseline gap-2 text-2xl md:text-3xl font-black">
+                  {% if block.settings.stat_number != blank %}
+                    <span>{{ block.settings.stat_number }}</span>
+                  {% endif %}
+                  {% if block.settings.stat_text != blank %}
+                    <span>{{ block.settings.stat_text }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .main-image {
+    max-width: 1200px;
+  }
+/* Icon size options */
+.stat-icon-small svg {
+  width: 20px;
+  height: 20px;
+}
+
+.stat-icon-medium svg {
+  width: 28px;
+  height: 28px;
+}
+
+.stat-icon-large svg {
+  width: 36px;
+  height: 36px;
+}
+
+.stat-icon-xlarge svg {
+  width: 44px;
+  height: 44px;
+}
+
+/* Force SVG colors to inherit - handle both stroke and fill */
+.stat-icon-small svg,
+.stat-icon-medium svg,
+.stat-icon-large svg,
+.stat-icon-xlarge svg {
+  stroke: currentColor !important;
+}
+
+.stat-icon-small svg path,
+.stat-icon-medium svg path,
+.stat-icon-large svg path,
+.stat-icon-xlarge svg path {
+  stroke: currentColor !important;
+}
+
+/* Target description text specifically */
+.teacher-description,
+.teacher-description p {
+  color: white !important;
+}
+
+/* Ensure proper contrast */
+.teacher-section {
+  position: relative;
+  overflow: hidden;
+}
+</style>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Modern Teacher Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Badge/Logo Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "teacher_image",
+      "label": "Teacher Main Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Meet Your Instructor"
+    },
+    {
+      "type": "text",
+      "id": "teacher_name",
+      "label": "Teacher Name",
+      "default": "DOMINO SANTANTONIO"
+    },
+    {
+      "type": "text",
+      "id": "large_title",
+      "label": "Large Title Text (4 words max for best effect)",
+      "default": "THE INTERNET'S MOST SUPPORTIVE DRUM COACH"
+    },
+    {
+      "type": "richtext",
+      "id": "teacher_description",
+      "label": "Teacher Description",
+      "default": "<p>Your instructor bio and description goes here. Keep it engaging and informative.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#0B76DB"
+    },
+    {
+      "type": "color",
+      "id": "teacher_name_color",
+      "label": "Teacher Name Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "stats_color",
+      "label": "Stats Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic/Achievement",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "book-icon",
+              "label": "Book Icon"
+            },
+            {
+              "value": "award-icon",
+              "label": "Award Icon"
+            },
+            {
+              "value": "record-icon",
+              "label": "Record Icon"
+            }
+          ],
+          "default": "book-icon"
+        },
+        {
+          "type": "select",
+          "id": "icon_size",
+          "label": "Icon Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small (20px)"
+            },
+            {
+              "value": "medium",
+              "label": "Medium (28px)"
+            },
+            {
+              "value": "large",
+              "label": "Large (36px)"
+            },
+            {
+              "value": "xlarge",
+              "label": "Extra Large (44px)"
+            }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#0B76DB"
+        },
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Number/Count",
+          "default": "2x"
+        },
+        {
+          "type": "text",
+          "id": "stat_text",
+          "label": "Stat Description",
+          "default": "Drumeo Awards Nominee"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modern Teacher Section",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "icon_type": "award-icon",
+            "icon_size": "medium",
+            "stat_number": "2x",
+            "stat_text": "Drumeo Awards Nominee"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon_type": "record-icon",
+            "icon_size": "medium",
+            "stat_number": "49M",
+            "stat_text": "views"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon_type": "book-icon",
+            "icon_size": "medium",
+            "stat_number": "104k",
+            "stat_text": "followers"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

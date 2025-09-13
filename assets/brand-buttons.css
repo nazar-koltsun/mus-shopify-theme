@@ -1,0 +1,237 @@
+/* ================================================================
+   BUTTON COMPONENT STYLES
+   ================================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.btn:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.btn__text {
+  position: relative;
+  z-index: 1;
+}
+
+.btn__icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.btn__icon svg {
+  transition: all 0.3s ease;
+}
+
+/* Size Variants */
+.btn--small {
+  height: 37px;
+  padding: 0 80px;
+  font-size: 12px;
+  gap: 6px;
+}
+
+.btn--small .btn__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn--medium {
+  height: 47px;
+  padding: 0 150px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.btn--medium .btn__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--large {
+  height: 57px;
+  padding: 0 200px;
+  font-size: 16px;
+  gap: 12px;
+}
+
+.btn--large .btn__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn--full-width {
+  width: 100%;
+  max-width: none;
+}
+
+/* Brand Color Variants */
+.btn--drumeo {
+  background: #0b76db;
+  color: white;
+}
+
+.btn--drumeo:hover {
+  background: #0b76db;
+  color: white;
+  filter: brightness(1.1);
+}
+
+.btn--pianote {
+  background: #F61A30;
+  color: white;
+}
+
+.btn--pianote:hover {
+  background: #F61A30;
+  color: white;
+  filter: brightness(1.1);
+}
+
+.btn--guitareo {
+  background: #00c9ac;
+  color: white;
+}
+
+.btn--guitareo:hover {
+  background: #00c9ac;
+  color: white;
+  filter: brightness(1.1);
+}
+
+.btn--singeo {
+  background: #8300e9;
+  color: white;
+}
+
+.btn--singeo:hover {
+  background: #8300e9;
+  color: white;
+  filter: brightness(1.1);
+}
+
+.btn--musora {
+  background: #FFAE00;
+  color: #0C1524;
+}
+
+.btn--musora:hover {
+  background: #FFAE00;
+  filter: brightness(1.1);
+}
+
+.btn--musora-black {
+  background: #0C1524;
+  color: white;
+}
+
+.btn--musora-black:hover {
+  background: white;
+  color: #0C1524;
+  border: 2px solid #0C1524;
+}
+
+.btn--musora-white {
+  background: #FAFAFB;
+  color: #0C1524;
+}
+
+.btn--musora-white:hover {
+  background: #0C1524;
+  color: white;
+}
+
+.btn--outline-white {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn--outline-white:hover {
+  background: white;
+  color: #0C1524;
+  border-color: white;
+}
+
+.btn--outline-black {
+  background: transparent;
+  border: 2px solid #0C1524;
+  color: #0C1524;
+}
+
+.btn--outline-black:hover {
+  background: #0C1524;
+  color: white;
+  border-color: #0C1524;
+}
+
+/* Disabled State */
+.btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Animation Effects */
+.btn:hover .btn__icon svg {
+  transform: translateX(3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .btn--large {
+    height: 47px;
+    padding: 0 120px;
+    font-size: 14px;
+  }
+  
+  .btn--medium {
+    height: 42px;
+    padding: 0 100px;
+    font-size: 13px;
+  }
+  
+  .btn--small {
+    height: 37px;
+    padding: 0 60px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn--large {
+    height: 44px;
+    padding: 0 80px;
+    font-size: 13px;
+  }
+  
+  .btn--medium {
+    height: 40px;
+    padding: 0 60px;
+    font-size: 12px;
+  }
+  
+  .btn--small {
+    height: 36px;
+    padding: 0 40px;
+    font-size: 10px;
+  }
+}

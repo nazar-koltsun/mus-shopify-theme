@@ -1,0 +1,181 @@
+{% comment %}
+  Renders Musora button with all original functionality plus custom styles
+  Accepts:
+  link: {Object} Button link
+  label: {Object} Button label
+  style: {Object} Button style (includes original + black, yellow, outlined)
+  class: {String} Class (optional)
+  border_color: {String} Border color (optional)
+  button_color: {String} Button color override (optional)
+  full_link: {Boolean} Full link button (optional)
+  Usage:
+  {% render 'button-musora', link: section.settings.button_link, label: section.settings.button_label, style: section.settings.button_style, class: '', border_color: '#ff0000', button_color: '#00ff00' %}
+{% endcomment %}
+
+<style>
+  .button--black,
+  .button--yellow,
+  .button--white,
+  .button--outlined {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 10rem;
+    min-height: 4.8rem;
+    padding: 0 2.4rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid white;
+    max-width: 260px;
+  }
+
+  .button--black,
+  .button--yellow,
+  .button--outlined {
+    background-color: #0C1524;
+    border-color: #0C1524;
+    color: #ffffff;
+  }
+
+  .button--yellow {
+    background-color: #FFAE00;
+    border-color: #FFAE00;
+    color: #0C1524;
+  }
+
+  .button--outlined {
+    background-color: transparent;
+    border-color: #0C1524;
+    color: #0C1524;
+  }
+
+  .button--white {
+    background: white;
+    border-color: white;
+    color: black;
+  }
+
+  .button--white:hover {
+    background-color: #0C1524;
+    border-color: white;
+    color: white;
+  }
+
+  .button--black:hover {
+    background-color: #FFAE00;
+    border-color: #FFAE00;
+    color: black;
+  }
+
+  .button--yellow:hover {
+    background-color: #0C1524;
+    border: 2px solid white;
+    color: #ffffff;
+  }
+
+  .button--outlined:hover {
+    background-color: #0C1524 ;
+    border-color: white;
+    color: white;
+  }
+
+  .button--black:hover svg,
+  .button--yellow:hover svg,
+  .button--white:hover svg,
+  .button--outlined:hover svg {
+    transform: translateX(2px);
+  }
+
+  .button--black svg,
+  .button--yellow svg,
+  .button--white svg,
+  .button--outlined svg {
+    transition: transform 0.3s ease;
+  }
+
+  /* Dark mode styles */
+  [data-scheme=dark] .button--black {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #0C1524 !important;
+  }
+  
+  [data-scheme=dark] .button--black:hover {
+    background-color: #FFAE00 !important;
+    border-color: #FFAE00 !important;
+    color: #0C1524 !important;
+  }
+  
+  [data-scheme=dark] .button--outlined {
+    background-color: transparent !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+  
+  [data-scheme=dark] .button--outlined:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #0C1524 !important;
+  }
+  
+  [data-scheme=dark] .button--white:hover {
+    background-color: #0C1524 !important;
+    border: 2px solid white !important;
+    color: #ffffff !important;
+  }
+  
+  [data-scheme=dark] .button--yellow {
+    background-color: #FFAE00 !important;
+    border-color: #FFAE00 !important;
+    color: #0C1524 !important;
+  }
+  
+  [data-scheme=dark] .button--yellow:hover {
+    background-color: #0C1524 !important;
+    border: 2px solid white !important;
+    color: white !important;
+  }
+</style>
+
+
+{%- liquid
+  # Set theme color (can be overridden by button_color parameter)
+  if button_color != blank
+    assign theme_color = button_color
+  else
+    assign theme_color = settings.colors_accent_1 | default: settings.accent_color
+  endif
+-%}
+
+<a
+  {% if link != blank %}
+    href="{{ link }}"
+  {% endif %}
+  class="{% if class %}{{ class }}__button{% endif %} button button--{{ style }}{% if style == 'simple' or style == 'simple_secondary' or style == 'simple_link' %} button--arrow{% endif %}{% if full_link %} button--full-link{% endif %} focus-inset"
+  {% if style == 'primary' or style == 'secondary' or border_color != blank %}
+    style="
+      {% if style == 'primary' %}background-color: {{ theme_color }}; border: 2px solid {{ theme_color }};{% endif %}
+      {% if style == 'secondary' %}background-color: transparent; border: 2px solid {{ theme_color }}; color: {{ theme_color }};{% endif %}
+      {% if border_color != blank %}border-color: {{ border_color }};{% endif %}
+    "
+    {% if style == 'secondary' %}
+      onmouseover="this.style.backgroundColor='{{ theme_color }}'; this.style.color='#ffffff';"
+      onmouseout="this.style.backgroundColor='transparent'; this.style.color='{{ theme_color }}';"
+    {% endif %}
+  {% endif %}
+  {% if link == blank %}
+    aria-disabled="true"
+  {% endif %}
+>
+  {% if style == 'simple' or style == 'simple_secondary' or style == 'simple_link' or style == 'tertiary' %}
+    <span>{{ label }}</span>
+    {% render 'icon-button-arrow' %}
+  {% else %}
+    {{ label }}
+    <span class="pl-0.5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 20 21" fill="currentColor" style="margin-left: 0.5rem; vertical-align: middle;">
+        <path d="M0 10.5C0 13.1522 1.05357 15.6957 2.92893 17.5711C4.8043 19.4464 7.34784 20.5 10 20.5C12.6522 20.5 15.1957 19.4464 17.0711 17.5711C18.9464 15.6957 20 13.1522 20 10.5C20 7.84784 18.9464 5.3043 17.0711 3.42893C15.1957 1.55357 12.6522 0.5 10 0.5C7.34784 0.5 4.8043 1.55357 2.92893 3.42893C1.05357 5.3043 0 7.84784 0 10.5ZM9.41406 15.2266C9.04688 15.5938 8.45312 15.5938 8.08984 15.2266C7.72656 14.8594 7.72266 14.2656 8.08984 13.9023L11.4883 10.5039L8.08984 7.10547C7.72266 6.73828 7.72266 6.14453 8.08984 5.78125C8.45703 5.41797 9.05078 5.41406 9.41406 5.78125L13.4766 9.83594C13.8438 10.2031 13.8438 10.7969 13.4766 11.1602L9.41406 15.2266Z"/>
+      </svg>
+    </span>
+  {% endif %}
+</a>

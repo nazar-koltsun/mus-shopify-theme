@@ -1,0 +1,169 @@
+ {% comment %} Call to Action Button {% endcomment %}
+      {% if section.settings.show_button and section.settings.button_text != blank %}
+        <div class="mt-8 sm:mt-12">
+          {% render 'button', 
+             text: section.settings.button_text,
+             url: section.settings.button_url,
+             variant: section.settings.button_variant,
+             size: section.settings.button_size,
+             icon: section.settings.button_icon,
+             full_width: section.settings.button_full_width,
+             target: section.settings.button_target,
+             class: 'mx-auto' %}
+        </div>
+      {% endif %}
+
+
+  "settings": [
+    {
+      "type": "header",
+      "content": "Call to Action Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get Started Today"
+    },
+    {
+      "type": "url",
+      "id": "button_url", 
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_variant",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "drumeo",
+          "label": "Drumeo"
+        },
+        {
+          "value": "pianote",
+          "label": "Pianote"
+        },
+        {
+          "value": "guitareo",
+          "label": "Guitareo"
+        },
+        {
+          "value": "singeo",
+          "label": "Singeo"
+        },
+        {
+          "value": "musora",
+          "label": "Musora"
+        },
+        {
+          "value": "musora-black",
+          "label": "Musora Black"
+        },
+        {
+          "value": "musora-white",
+          "label": "Musora White"
+        },
+        {
+          "value": "outline-white",
+          "label": "Outline White"
+        },
+        {
+          "value": "outline-black",
+          "label": "Outline Black"
+        }
+      ],
+      "default": "musora"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "button_icon",
+      "label": "Button Icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "No Icon"
+        },
+        {
+          "value": "arrow",
+          "label": "Arrow"
+        },
+        {
+          "value": "play",
+          "label": "Play"
+        },
+        {
+          "value": "cart",
+          "label": "Cart"
+        },
+        {
+          "value": "cart-plus",
+          "label": "Cart Plus"
+        },
+        {
+          "value": "download",
+          "label": "Download"
+        },
+        {
+          "value": "external",
+          "label": "External"
+        },
+        {
+          "value": "lock",
+          "label": "Lock"
+        },
+        {
+          "value": "clapper-board",
+          "label": "Clapper Board"
+        }
+      ],
+      "default": "arrow"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width",
+      "label": "Full Width Button",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_target",
+      "label": "Link Target",
+      "options": [
+        {
+          "value": "_self",
+          "label": "Same Window"
+        },
+        {
+          "value": "_blank",
+          "label": "New Window"
+        }
+      ],
+      "default": "_self"
+    }
+  ],

@@ -1,0 +1,604 @@
+{% if section.settings.heading != blank %}
+  
+{% if product and product.type == 'Digital one time' %}
+
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+  
+  .guarantee.section-{{ section.id }}-padding {
+    background-color: {{ section.settings.background_color | default: '#000000' }};
+    position: relative;
+    z-index: 20;
+    color: white !important;
+    text-align: center;
+  }
+
+  .guarantee.section-{{ section.id }}-padding * {
+    color: white !important;
+  }
+  
+  .guarantee.section-{{ section.id }}-padding .rte p,
+  .guarantee.section-{{ section.id }}-padding .guarantee__description p {
+    color: white !important;
+    margin-bottom: 1rem;
+  }
+  
+  .guarantee.section-{{ section.id }}-padding .rte p:last-child,
+  .guarantee.section-{{ section.id }}-padding .guarantee__description p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .guarantee.section-{{ section.id }}-padding .rte br {
+    line-height: 1.5;
+  }
+  
+  .guarantee__diagonal {
+    height: 1.5rem;
+    margin-top: -1.5rem;
+    position: relative;
+    z-index: 20;
+    background: linear-gradient(to bottom right, transparent calc(50% - 1px), transparent, {{ section.settings.background_color | default: '#000000' }} calc(50% + 1px));
+  }
+  
+  .guarantee__badge {
+    position: absolute;
+    top: calc(-{{ section.settings.badge_height_mobile | default: 5 }}rem / 2);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    {% unless section.settings.show_badge %}display: none;{% endunless %}
+  }
+    
+  .guarantee__badge img {
+    height: {{ section.settings.badge_height_mobile | default: 5 }}rem;
+    width: auto;
+    max-width: 90vw;
+  }
+  
+  .guarantee__content {
+    padding-top: calc({{ section.settings.badge_height_mobile | default: 5 }}rem / 2 + 1rem);
+    max-width: 70rem;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Mobile improvements */
+  @media (max-width: 639px) {
+    .guarantee__diagonal {
+      height: 1rem;
+      margin-top: -1rem;
+    }
+    
+    .guarantee__badge {
+      top: calc(-{{ section.settings.badge_height_mobile | default: 5 }}rem / 2 - 0.5rem);
+    }
+    
+    .guarantee__badge img {
+      height: {{ section.settings.badge_height_mobile | default: 5 }}rem;
+    }
+    
+    .guarantee__content {
+      padding-top: calc({{ section.settings.badge_height_mobile | default: 5 }}rem / 2 + 1.5rem);
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+  
+  /* Tablet */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .guarantee__diagonal {
+      height: 2rem;
+      margin-top: -2rem;
+    }
+    
+    .guarantee__badge {
+      top: calc(-{{ section.settings.badge_height_desktop | default: 13 }}rem / 2 + 1rem);
+    }
+    
+    .guarantee__badge img {
+      height: {{ section.settings.badge_height_desktop | default: 13 }}rem;
+    }
+    
+    .guarantee__content {
+      padding-top: calc({{ section.settings.badge_height_desktop | default: 13 }}rem / 2 + 1rem);
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .guarantee__diagonal {
+      height: 2.5rem;
+      margin-top: -2.5rem;
+    }
+    
+    .guarantee__badge {
+      top: calc(-{{ section.settings.badge_height_desktop | default: 13 }}rem / 2 + 1.5rem);
+    }
+    
+    .guarantee__badge img {
+      height: {{ section.settings.badge_height_desktop | default: 13 }}rem;
+    }
+    
+    .guarantee__content {
+      padding-top: calc({{ section.settings.badge_height_desktop | default: 13 }}rem / 2 + 1rem);
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  .font-weight-normal {
+    font-weight: normal !important;
+  }
+  
+  /* Steps styling */
+  .guarantee__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .guarantee__steps {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .guarantee__step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 300px;
+    }
+  }
+  
+  .guarantee__step-title {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+{%- endstyle -%}
+
+  <!-- Diagonal separator -->
+  <div class="guarantee__diagonal" aria-hidden="true"></div>
+  
+  <section class="guarantee color-{{ section.settings.color_scheme }} background section-{{ section.id }}-padding" role="region" aria-labelledby="guarantee-heading">
+    <div class="container">
+     {% if section.settings.show_badge %}
+        {% if section.settings.custom_badge_image != blank %}
+          {% assign guarantee_image_url = section.settings.custom_badge_image | image_url: width: 400 %}
+        {% else %}
+          {% liquid
+            case product.vendor
+              when 'Drumeo'
+                assign guarantee_image_url = 'https://d21q7xesnoiieh.cloudfront.net/fit-in/350x0/filters:quality(95)/marketing/drumeo/membership/homepage/2024/guarantee.webp'
+              when 'Pianote'
+                assign guarantee_image_url = 'https://d21q7xesnoiieh.cloudfront.net/fit-in/350x0/filters:quality(95)/marketing/pianote/membership/homepage/webp-format/piano-guarantee.webp'
+              when 'Guitareo'
+                assign guarantee_image_url = 'https://d21q7xesnoiieh.cloudfront.net/fit-in/350x0/filters:quality(95)/marketing/guitareo/membership/homepage/2024/guitareo-guarantee.webp'
+              when 'Singeo'
+                assign guarantee_image_url = 'https://d21q7xesnoiieh.cloudfront.net/fit-in/250x0/filters:quality(95)/marketing/singeo/membership/homepage/webp-format/singeo-guarantee.webp'
+              when 'Musora'
+                assign guarantee_image_url = 'https://shop.musora.com/cdn/shop/files/guarantee.webp?v=1747779285'
+              else
+                assign guarantee_image_url = 'https://shop.musora.com/cdn/shop/files/guarantee.webp?v=1747779285'
+            endcase
+          %}
+        {% endif %}
+      
+        <div class="guarantee__badge" aria-hidden="true">
+          <img src="{{ guarantee_image_url }}" alt="90-day guarantee badge" loading="lazy">
+        </div>
+      {% endif %}
+
+      <!-- Content -->
+      <div class="guarantee__content">
+        {% render 'section-text', 
+          section: section, 
+          class: 'guarantee', 
+          text_align: section.settings.text_align,
+          heading_level: section.settings.heading_level
+        %}
+
+        {% if section.settings.description != blank %}
+          <div class="guarantee__description rte pt-4 lg:pt-6">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="guarantee__steps">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'step' %}
+                  <div class="guarantee__step" {{ block.shopify_attributes }}>
+                    {% if block.settings.step_title != blank %}
+                      <div class="guarantee__step-title rte">
+                        {{ block.settings.step_title }}
+                      </div>
+                    {% endif %}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Guarantee Section",
+  "tag": "section",
+  "class": "guarantee-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Badge Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show Guarantee Badge",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_badge_image",
+      "label": "Custom Badge Image",
+      "info": "Upload your own badge image. If blank, will use vendor-specific badge."
+    },
+    {
+      "type": "range",
+      "id": "badge_height_mobile",
+      "label": "Badge Height - Mobile (rem)",
+      "min": 3,
+      "max": 10,
+      "step": 0.5,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "badge_height_desktop",
+      "label": "Badge Height - Desktop (rem)",
+      "min": 8,
+      "max": 16,
+      "step": 0.5,
+      "default": 13
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "t:sections.all.subheading.label"
+    },
+    {
+      "type": "select",
+      "id": "subheading_style",
+      "options": [
+  {
+    "value": "subtitle",
+    "label": "t:sections.all.subheading_style.options__1.label"
+  },
+  {
+    "value": "subtitle subtitle--secondary",
+    "label": "t:sections.all.subheading_style.options__2.label"
+  },
+  {
+    "value": "body-large",
+    "label": "Regular Text"
+  },
+  {
+    "value": "h3",
+    "label": "Heading 3"
+  },
+  {
+    "value": "h4 font-weight-normal",
+    "label": "Heading 4"
+  },
+  {
+    "value": "body-small",
+    "label": "Small Text"
+  },
+  {
+    "value": "body-large body-large--bold",
+    "label": "Bold Large Text"
+  },
+  {
+    "value": "subtitle subtitle--uppercase",
+    "label": "Uppercase Subtitle"
+  },
+  {
+    "value": "subtitle subtitle--italic",
+    "label": "Italic Subtitle"
+  },
+  {
+    "value": "caption",
+    "label": "Caption"
+  },
+  {
+    "value": "overline",
+    "label": "Overline"
+  },
+  {
+    "value": "body body--accent",
+    "label": "Accent Text"
+  },
+  {
+    "value": "display-text",
+    "label": "Display Text"
+  }
+      ],
+      "default": "subtitle",
+      "label": "t:sections.all.subheading_style.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "info": "t:sections.all.heading.info",
+      "default": "Happy student guarantee."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select", 
+      "id": "heading_level",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_level.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_level.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_level.options__3.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_level.label"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "t:sections.all.text_align.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.all.text_align.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.all.text_align.options__2.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough – or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.button.header_button.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "<p>Step title</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guarantee Section",
+      "settings": {
+        "background_color": "#000000",
+        "heading": "Happy student guarantee.",
+        "text": "<p>Test-drive your lessons for 90 days. Zero risk.</p>",
+        "description": "<p>Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough – or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

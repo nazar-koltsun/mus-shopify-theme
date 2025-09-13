@@ -1,0 +1,331 @@
+<style>
+.product-cards-section {
+  padding: 60px 20px;
+  background: linear-gradient(45deg, 
+    rgba(255, 192, 203, 0.1) 0%, 
+    rgba(255, 255, 255, 0.1) 25%, 
+    rgba(255, 192, 203, 0.1) 50%, 
+    rgba(255, 255, 255, 0.1) 75%, 
+    rgba(255, 192, 203, 0.1) 100%);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.product-cards-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 192, 203, 0.1) 10px,
+    rgba(255, 192, 203, 0.1) 20px
+  );
+  pointer-events: none;
+}
+
+.product-cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.product-cards-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.product-cards-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0C1524;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.product-cards-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.product-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .product-cards-section {
+    padding: 40px 16px;
+  }
+  
+  .product-cards-title {
+    font-size: 2.5rem;
+  }
+  
+  .product-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-cards-title {
+    font-size: 2rem;
+  }
+  
+  .product-cards-subtitle {
+    font-size: 1.1rem;
+  }
+}
+</style>
+
+<section class="product-cards-section">
+  <div class="product-cards-container">
+    
+    <!-- Section Header -->
+    {% if section.settings.title != blank or section.settings.subtitle != blank %}
+      <div class="product-cards-header">
+        {% if section.settings.title != blank %}
+          <h2 class="product-cards-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        
+        {% if section.settings.subtitle != blank %}
+          <p class="product-cards-subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <!-- Cards Grid -->
+    <div class="product-cards-grid">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'product_card' %}
+              {% render 'product-card',
+                 title: block.settings.title,
+                 subtitle: block.settings.subtitle,
+                 badge: block.settings.badge,
+                 image: block.settings.image,
+                 price: block.settings.price,
+                 features: block.settings.features,
+                 button_text: block.settings.button_text,
+                 button_url: block.settings.button_url,
+                 variant: block.settings.variant %}
+                 
+            {% when 'shopify_product' %}
+              {% assign product = all_products[block.settings.product_handle] %}
+              {% if product != blank %}
+                {% render 'product-card',
+                   title: product.title,
+                   subtitle: block.settings.custom_subtitle,
+                   badge: block.settings.custom_badge,
+                   image: product.featured_image,
+                   price: product.price | money,
+                   features: block.settings.custom_features,
+                   button_text: block.settings.button_text | default: 'ADD TO CART',
+                   button_url: product.url,
+                   variant: block.settings.variant %}
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <!-- Default Demo Cards -->
+        {% render 'product-card',
+           title: 'Musora Membership',
+           subtitle: 'Charting workbook + 6 pro charting pencils.',
+           badge: 'MOST POPULAR',
+           price: '$240',
+           features: '1 Year Of Unlimited Drums, Piano, Guitar And Singing Lessons|1500+ Popular Songs|Word Class Teachers|Charting Workbook (Physical Copy)|6 Blackwing Pro Charting Pencils|90-Day Guarantee',
+           button_text: 'ADD TO CART',
+           button_url: '#',
+           variant: 'musora' %}
+           
+        {% render 'product-card',
+           title: 'Drumeo Charts',
+           subtitle: 'W/ Kenny Aronoff',
+           price: '$27',
+           features: '1 Year Of Unlimited Drum Lessons|Charting Workbook (Physical Copy)|6 Blackwing Pro Charting Pencils|90-Day Guarantee',
+           button_text: 'ADD TO CART',
+           button_url: '#',
+           variant: 'drumeo' %}
+      {% endif %}
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Cards",
+  "tag": "section",
+  "class": "product-cards-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Select the perfect membership for your musical journey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Custom Product Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Product Name"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Card Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge Text (optional)",
+          "info": "e.g., 'MOST POPULAR', 'BEST VALUE'"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$0"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features List",
+          "info": "Separate features with | (pipe symbol). Example: Feature 1|Feature 2|Feature 3"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "ADD TO CART"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "variant",
+          "label": "Brand Variant",
+          "options": [
+            { "value": "musora", "label": "Musora" },
+            { "value": "drumeo", "label": "Drumeo" },
+            { "value": "pianote", "label": "Pianote" },
+            { "value": "guitareo", "label": "Guitareo" },
+            { "value": "singeo", "label": "Singeo" }
+          ],
+          "default": "musora"
+        }
+      ]
+    },
+    {
+      "type": "shopify_product",
+      "name": "Shopify Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_handle",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "custom_subtitle",
+          "label": "Custom Subtitle (optional)",
+          "info": "Override product description with custom subtitle"
+        },
+        {
+          "type": "text",
+          "id": "custom_badge",
+          "label": "Badge Text (optional)"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_features",
+          "label": "Custom Features List",
+          "info": "Separate features with | (pipe symbol)"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "ADD TO CART"
+        },
+        {
+          "type": "select",
+          "id": "variant",
+          "label": "Brand Variant",
+          "options": [
+            { "value": "musora", "label": "Musora" },
+            { "value": "drumeo", "label": "Drumeo" },
+            { "value": "pianote", "label": "Pianote" },
+            { "value": "guitareo", "label": "Guitareo" },
+            { "value": "singeo", "label": "Singeo" }
+          ],
+          "default": "musora"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Cards Section",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Musora Membership",
+            "subtitle": "Charting workbook + 6 pro charting pencils.",
+            "badge": "MOST POPULAR",
+            "price": "$240",
+            "features": "1 Year Of Unlimited Drums, Piano, Guitar And Singing Lessons|1500+ Popular Songs|Word Class Teachers|Charting Workbook (Physical Copy)|6 Blackwing Pro Charting Pencils|90-Day Guarantee",
+            "variant": "musora"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Drumeo Charts",
+            "subtitle": "W/ Kenny Aronoff",
+            "price": "$27",
+            "features": "1 Year Of Unlimited Drum Lessons|Charting Workbook (Physical Copy)|6 Blackwing Pro Charting Pencils|90-Day Guarantee",
+            "variant": "drumeo"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

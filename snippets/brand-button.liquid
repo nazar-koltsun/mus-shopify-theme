@@ -1,0 +1,112 @@
+{% comment %}
+================================================================
+BUTTON COMPONENT - Reusable Button Snippet
+================================================================
+
+Usage:
+{% render 'button', 
+   text: 'Click Me',
+   url: '/products', 
+   variant: 'drumeo',
+   size: 'medium',
+   icon: 'cart-plus',
+   full_width: true,
+   target: '_blank',
+   class: 'custom-class' %}
+
+Parameters:
+- text (required): Button text
+- url (required): Button link
+- variant: drumeo, pianote, guitareo, singeo, musora, musora-black, musora-white, outline-white, outline-black
+- size: small, medium, large
+- icon: arrow, play, download, external, lock, clapper-board, cart, cart-plus, none
+- full_width: true/false
+- target: _blank, _self
+- class: Additional CSS classes
+- disabled: true/false
+- id: Button ID attribute
+
+================================================================
+{% endcomment %}
+
+<!-- Parameter Setup with Defaults -->
+{% liquid
+  assign button_text = text | default: 'Button'
+  assign button_url = url | default: '#'
+  assign button_variant = variant | default: 'musora'
+  assign button_size = size | default: 'medium'
+  assign button_icon = icon | default: 'arrow'
+  assign button_full_width = full_width | default: false
+  assign button_target = target | default: '_self'
+  assign button_class = class | default: ''
+  assign button_disabled = disabled | default: false
+  assign button_id = id | default: ''
+%}
+
+<!-- Build CSS Classes -->
+{% liquid
+  assign css_classes = 'btn'
+  assign css_classes = css_classes | append: ' btn--' | append: button_variant
+  assign css_classes = css_classes | append: ' btn--' | append: button_size
+  
+  if button_full_width
+    assign css_classes = css_classes | append: ' btn--full-width'
+  endif
+  
+  if button_disabled
+    assign css_classes = css_classes | append: ' btn--disabled'
+  endif
+  
+  if button_class != blank
+    assign css_classes = css_classes | append: ' ' | append: button_class
+  endif
+%}
+
+<!-- Icon SVG Definitions -->
+{% liquid
+  case button_icon
+    when 'cart-plus'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor"><path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM252 160c0 11 9 20 20 20l44 0 0 44c0 11 9 20 20 20s20-9 20-20l0-44 44 0c11 0 20-9 20-20s-9-20-20-20l-44 0 0-44c0-11-9-20-20-20s-20 9-20 20l0 44-44 0c-11 0-20 9-20 20z"/></svg>'
+    when 'cart'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor"><path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>'
+    when 'arrow'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="currentColor"><path d="M0 10.5C0 13.1522 1.05357 15.6957 2.92893 17.5711C4.8043 19.4464 7.34784 20.5 10 20.5C12.6522 20.5 15.1957 19.4464 17.0711 17.5711C18.9464 15.6957 20 13.1522 20 10.5C20 7.84784 18.9464 5.3043 17.0711 3.42893C15.1957 1.55357 12.6522 0.5 10 0.5C7.34784 0.5 4.8043 1.55357 2.92893 3.42893C1.05357 5.3043 0 7.84784 0 10.5ZM9.41406 15.2266C9.04688 15.5938 8.45312 15.5938 8.08984 15.2266C7.72656 14.8594 7.72266 14.2656 8.08984 13.9023L11.4883 10.5039L8.08984 7.10547C7.72266 6.73828 7.72266 6.14453 8.08984 5.78125C8.45703 5.41797 9.05078 5.41406 9.41406 5.78125L13.4766 9.83594C13.8438 10.2031 13.8438 10.7969 13.4766 11.1602L9.41406 15.2266Z" fill="currentColor"/></svg>'
+    when 'play'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
+    when 'download'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>'
+    when 'external'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>'
+    when 'lock'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="currentColor"><path d="M10 2.625C8.18711 2.625 6.71875 4.09336 6.71875 5.90625V7.875H16.5625C18.0104 7.875 19.1875 9.05215 19.1875 10.5V18.375C19.1875 19.8229 18.0104 21 16.5625 21H3.4375C1.98965 21 0.8125 19.8229 0.8125 18.375V10.5C0.8125 9.05215 1.98965 7.875 3.4375 7.875H4.09375V5.90625C4.09375 2.64551 6.73926 0 10 0C12.3584 0 14.3887 1.38223 15.3361 3.37559C15.6479 4.03184 15.3689 4.81523 14.7127 5.12285C14.0564 5.43047 13.273 5.15566 12.9654 4.49941C12.4363 3.38789 11.3084 2.625 10 2.625ZM11.3125 15.75C12.0385 15.75 12.625 15.1635 12.625 14.4375C12.625 13.7115 12.0385 13.125 11.3125 13.125H8.6875C7.96152 13.125 7.375 13.7115 7.375 14.4375C7.375 15.1635 7.96152 15.75 8.6875 15.75H11.3125Z" fill="currentColor"/></svg>'
+    when 'clapper-board'
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="currentColor"><path d="M17.7266 1.76172L12.7734 6.71094L12.7344 6.75H9.13672L14.1016 1.78906L14.1406 1.75H17.5C17.5781 1.75 17.6523 1.75391 17.7266 1.76172ZM15.3867 6.75L19.4531 2.6875C19.7969 3.11719 20 3.66016 20 4.25V6.75H15.3867ZM7.88672 1.75H11.4844L6.52344 6.71094L6.48438 6.75H2.88672L7.85156 1.78906L7.89062 1.75H7.88672ZM5.23438 1.75L0.273438 6.71094L0.234375 6.75H0V4.25C0 2.87109 1.12109 1.75 2.5 1.75H5.23828H5.23438ZM0 8H20V16.75C20 18.1289 18.8789 19.25 17.5 19.25H2.5C1.12109 19.25 0 18.1289 0 16.75V8ZM8.45703 10.5742C8.25391 10.6836 8.125 10.8945 8.125 11.125V16.125C8.125 16.3555 8.25 16.5664 8.45703 16.6758C8.66406 16.7852 8.90625 16.7734 9.09766 16.6445L12.8477 14.1445C13.0195 14.0273 13.125 13.832 13.125 13.625C13.125 13.418 13.0195 13.2227 12.8477 13.1055L9.09766 10.6055C8.90625 10.4766 8.66016 10.4648 8.45703 10.5742Z" fill="currentColor"/></svg>'
+    when 'none'
+      assign icon_svg = ''
+    else
+      assign icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="currentColor"><path d="M0 10.5C0 13.1522 1.05357 15.6957 2.92893 17.5711C4.8043 19.4464 7.34784 20.5 10 20.5C12.6522 20.5 15.1957 19.4464 17.0711 17.5711C18.9464 15.6957 20 13.1522 20 10.5C20 7.84784 18.9464 5.3043 17.0711 3.42893C15.1957 1.55357 12.6522 0.5 10 0.5C7.34784 0.5 4.8043 1.55357 2.92893 3.42893C1.05357 5.3043 0 7.84784 0 10.5ZM9.41406 15.2266C9.04688 15.5938 8.45312 15.5938 8.08984 15.2266C7.72656 14.8594 7.72266 14.2656 8.08984 13.9023L11.4883 10.5039L8.08984 7.10547C7.72266 6.73828 7.72266 6.14453 8.08984 5.78125C8.45703 5.41797 9.05078 5.41406 9.41406 5.78125L13.4766 9.83594C13.8438 10.2031 13.8438 10.7969 13.4766 11.1602L9.41406 15.2266Z" fill="currentColor"/></svg>'
+  endcase
+%}
+
+<!-- Button Element -->
+{% if button_disabled %}
+  <span class="{{ css_classes }}"
+        {% if button_id != blank %}id="{{ button_id }}"{% endif %}
+        aria-disabled="true">
+    <span class="btn__text">{{ button_text }}</span>
+    {% if button_icon != 'none' and icon_svg != blank %}
+      <span class="btn__icon">{{ icon_svg }}</span>
+    {% endif %}
+  </span>
+{% else %}
+  <a href="{{ button_url }}"
+     class="{{ css_classes }}"
+     {% if button_id != blank %}id="{{ button_id }}"{% endif %}
+     {% if button_target != '_self' %}target="{{ button_target }}"{% endif %}
+     {% if button_target == '_blank' %}rel="noopener noreferrer"{% endif %}>
+    <span class="btn__text">{{ button_text }}</span>
+    {% if button_icon != 'none' and icon_svg != blank %}
+      <span class="btn__icon">{{ icon_svg }}</span>
+    {% endif %}
+  </a>
+{% endif %}

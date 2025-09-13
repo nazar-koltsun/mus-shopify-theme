@@ -1,0 +1,411 @@
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div class="sub-pitch {% if section.settings.full_width %}sub-pitch--full-width {% else %}container{% endif %} sub-pitch--align-{{ section.settings.alignment }}">
+ <section class="bg-black text-white px-6 sm:px-6 py-10 sm:py-16 lg:py-28 text-center relative z-10">
+    <div class="container max-w-4xl mx-auto sm:mb-12">
+        <div class="relative z-20">
+            <div class="inline-block mb-6 sm:mb-4 border py-1 rounded-full px-4" style="border-color:rgba(255,255,255,0.4);">
+                <img src="https://d21q7xesnoiieh.cloudfront.net/fit-in/400x0/filters:quality(95)/{{ settings.studentsIcon }}" alt="Musicians" class="h-8">
+                <p class="inline-block ml-2 align-middle">101K Musora Students</p>
+            </div>
+
+            <div class="text-center leading-snug">
+                <h1 class="leading-tight"><strong>
+                    {% if settings.header != blank %}
+                        {{ settings.header | escape }}
+                    {% else %}
+                        Learn to play,<br class="sm:hidden"> your way.<br>
+                         <span class="inline-block text-transparent bg-clip-text"
+                         style="background: {{ settings.textGradient }};">
+                            Start free with<br class="sm:hidden"> {{ settings.theme | capitalize }}!
+                        </span>
+                    {% endif %}
+                    </strong></h1>
+                <h4 class="leading-normal max-w-xl mx-auto mt-4 mb-6 sm:mb-14 opacity-80">
+                    {% if settings.subHeader != blank %}
+                        {{ settings.subHeader | escape }}
+                    {% else %}
+                        Your first
+                        <strong>
+                        {% if settings.month != blank %} 30 days are {% else %} week is {% endif %}
+                        free.</strong><br class="sm:hidden"> Cancel anytime.
+                    {% endif %}
+                </h4>
+                <a class="inline-block join {{ settings.theme }} smaller w-full max-w-xs"
+                    {% if settings.orderUrl != blank %}
+                        href="{{ settings.orderUrl }}"
+                    {% elsif settings.month != blank %}
+                        href="/choose-your-trial-month"
+                    {% else %}
+                        href="/choose-plan"
+                    {% endif %}
+                >
+                    {% if settings.cta != blank %}
+                        {{ settings.cta | escape }}
+                    {% else %}
+                        START FOR FREE <i class="fas fa-arrow-right" style="line-height: 0;"></i>
+                    {% endif %}
+                </a>
+                {% if settings.theme == "pianote" %}
+                    <p class="leading-tight text-sm mt-4" style="color:#8D8D8D;"><em>Need a piano? <a href="/shop/prima" class="hover:text-white underline">Get the Piano Bundle</a></em></p>
+                {% endif %}
+            </div>
+
+            <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mt-10 sm:mt-16">
+                <div>
+                    <h2><i class="text-{{ settings.theme }} mb-2 sm:mb-4  fad fa-clapperboard-play"></i></h2>
+                    <h5 class="mb-2 font-black">Video Lessons</h5>
+                    <p class="leading-tight opacity-50">Online {% if settings.theme == "drumeo" %}drum{% elsif settings.theme == "pianote" %}piano{% else %}music{% endif %} lessons<br> on every topic.</p>
+                </div>
+                <div>
+                    <h2><i class="text-{{ settings.theme }} mb-2 sm:mb-4  fad fa-message-lines"></i></h2>
+                    <h5 class="mb-2 font-black">Great Teachers</h5>
+                    <p class="leading-tight opacity-50">Personalized feedback<br> from real teachers.</p>
+                </div>
+                <div>
+                    <h2><i class="text-{{ settings.theme }} mb-2 sm:mb-4  fad fa-unlock-keyhole"></i></h2>
+                    <h5 class="mb-2 font-black">Full Access</h5>
+                    <p class="leading-tight opacity-50">
+                        {% if settings.theme == 'drumeo' %}
+                            <strong>PLUS</strong> piano, guitar,<br> and singing lessons.
+                        {% elsif settings.theme == 'pianote' %}
+                            <strong>PLUS</strong> singing, guitar,<br> and drum lessons.
+                        {% elsif settings.theme == 'guitareo' %}
+                            <strong>PLUS</strong> singing, piano,<br> and drum lessons.
+                        {% elsif settings.theme == 'singeo' %}
+                            <strong>PLUS</strong> piano, guitar,<br> and drum lessons.
+                        {% elsif settings.theme == 'musora' %}
+                            All-access to piano, guitar, drums and singing lessons.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if settings.mp4 != blank %}
+        <div class="top-0 left-0 absolute w-full h-full z-10" style="background: linear-gradient(30deg, hsla(210, 17%, 9%, 0.9) 55%, {{ settings.gradient }});"></div>
+        <video class="absolute inset-0 object-cover w-full h-full z-0" type="video/mp4" autoplay loop playsinline muted src="{{ settings.mp4 }}"></video>
+    {% else %}
+        <div class="absolute inset-0 bg-cover bg-center w-full h-full z-0" style="background-image:url('https://musora-image-processing-cdn.s3.us-east-2.amazonaws.com/marketing/musora/membership/made-to-play/final-bg.jpg');"></div>
+    {% endif %}
+</section>
+
+</div>
+
+{% schema %}
+{
+  "name": "sub-pitch",
+  "tag": "section",
+  "class": "spaced-section",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.sub-pitch.settings.full_width.label"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.sub-pitch.settings.alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.sub-pitch.settings.alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.sub-pitch.settings.alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.sub-pitch.settings.alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subheading",
+      "name": "t:sections.sub-pitch.blocks.subheading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "default": "Subheading",
+          "label": "t:sections.sub-pitch.blocks.heading.settings.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.sub-pitch.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading for your section",
+          "label": "t:sections.sub-pitch.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "medium",
+              "label": "t:sections.sub-pitch.blocks.heading.settings.heading_size.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.sub-pitch.blocks.heading.settings.heading_size.options__2.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.sub-pitch.blocks.heading.settings.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_level",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_level.options__1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_level.options__2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_level.options__3.label"
+            }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_level.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.sub-pitch.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Description for your section.</p>",
+          "label": "t:sections.sub-pitch.blocks.text.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.sub-pitch.blocks.button.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "t:sections.all.button.button_label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.all.button.button_link.label"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "t:sections.all.button.button_style.options__1.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:sections.all.button.button_style.options__2.label"
+            },
+            {
+              "value": "tertiary",
+              "label": "t:sections.all.button.button_style.options__3.label"
+            }
+          ],
+          "default": "primary",
+          "label": "t:sections.all.button.button_style.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sub-pitch.presets.name",
+      "blocks": [
+        {
+          "type": "subheading"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

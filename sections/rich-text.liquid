@@ -1,0 +1,145 @@
+<section id="guarantee-section" class="pb-10 sm:pb-14 lg:pb-20 relative text-center px-6 z-20 text-white">
+  <div class="container mx-auto max-w-6xl">
+    
+    {% comment %} Guarantee Badge {% endcomment %}
+    {% if section.settings.guarantee_image %}
+      <div class="absolute -top-14 left-1/2 transform -translate-x-1/2 z-30">
+        <img class="h-28 md:h-40" 
+             src="{{ section.settings.guarantee_image | image_url }}" 
+             alt="{{ section.settings.guarantee_image.alt | default: '90-day guarantee badge' }}">
+      </div>
+    {% endif %}
+
+    {% comment %} Main Heading {% endcomment %}
+    <h5 class="rich-text__heading mx-auto text-white pt-10 md:pt-20">
+      {{ section.settings.heading | default: "Happy student guarantee." }}
+    </h5>
+        <h5 class="mx-auto text-white font-normal">
+      {{ section.settings.subheading | default: "Test-drive your lessons for 90 days. Zero risk." }}
+    </h5>
+    <span class="text-xl md:text-2xl font-normal"></span>
+
+    {% comment %} Description {% endcomment %}
+    <div class="leading-relaxed my-6 sm:my-8 max-w-5xl mx-auto">
+      {{ section.settings.description | default: "Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough – or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee. More than anything, we want to make sure you have a POSITIVE experience developing new skills and gaining confidence on the drums." }}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-8 sm:gap-12 mt-12">
+        {% for block in section.blocks %}
+          <div class="text-center mb-6 sm:mb-0" {{ block.shopify_attributes }}>
+            <div class="text-white border-white border-2 rounded-full inline-flex items-center justify-center w-12 h-12 mb-4 text-lg font-bold">
+              <span>{{ forloop.index }}</span>
+            </div>
+            <div class="leading-normal font-medium max-w-xs px-10">
+              {{ block.settings.step_title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% comment %} Section Schema for Shopify Theme Customizer {% endcomment %}
+{% schema %}
+{
+  "name": "Guarantee Section",
+  "tag": "section",
+  "class": "guarantee-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "guarantee_image",
+      "label": "Guarantee Badge Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Happy student guarantee."
+    },
+    {
+      "type": "text",  
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Test-drive your lessons for 90 days. Zero risk."
+    },
+    {
+      "type": "textarea",
+      "id": "description", 
+      "label": "Description",
+      "default": "Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough – or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee. More than anything, we want to make sure you have a POSITIVE experience developing new skills and gaining confidence on the drums."
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Step 1 Title", 
+      "default": "Start your lessons today."
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Step 2 Title",
+      "default": "Enjoy them for 90 days, risk-free." 
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Step 3 Title",
+      "default": "Change your mind? Get a refund."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guarantee Section",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Start your lessons today."
+          }
+        },
+        {
+          "type": "step", 
+          "settings": {
+            "step_title": "Enjoy them for 90 days, risk-free."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Change your mind? Get a refund."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  #guarantee-section {
+    padding-top: 4rem;
+    background: #000000;
+  }
+  
+  @media (max-width: 640px) {
+    #guarantee-section {
+      padding-top: 5rem; 
+    }
+  }
+</style>

@@ -1,0 +1,265 @@
+{%- if product and product.type == 'Digital one time' and product.metafields.custom.hide_teacher_section != true -%}
+
+<div class="teacher-section" style="background-color: {{ section.settings.background_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <div class="teacher-section__grid">
+      <div class="teacher-image" style="overflow: hidden; border-radius: 10px;">
+        <img src="{{ section.settings.teacher_image | img_url: '800x' }}" alt="{{ section.settings.teacher_name }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+      </div>
+      <div class="teacher-card" style="background-color: {{ section.settings.card_background_color }}; border-radius: 10px; padding: {{ section.settings.card_padding }}px; margin-left: 20px;">
+        <div class="teacher-content" style="padding: 20px;">
+          <p style="color: {{ section.settings.subtitle_color }}; text-transform: uppercase; font-weight: bold; margin: 0 0 10px;">{{ section.settings.subtitle }}</p>
+          <h2 style="color: {{ section.settings.teacher_name_color }}; font-size: 2em; margin: 0 0 20px;">{{ section.settings.teacher_name }}</h2>
+          <div style="color: {{ section.settings.text_color }};">
+            {{ section.settings.teacher_description }}
+          </div>
+          <div class="teacher-social" style="display: flex; justify-content: space-around; margin-top: 40px;">
+            {% for block in section.blocks %}
+              {% if block.type == 'social' %}
+                <div class="social-block" style="text-align: center; margin-right: 7px;">
+                  <img src="{{ block.settings.social_icon | img_url: '100x100' }}" alt="{{ block.settings.social_platform }}" style="height: 60px; width: auto;">
+                  <div style="color: {{ section.settings.text_color }}; margin-top: 10px; line-height: 1;">
+                    <strong style="font-size: 2.5em; font-weight: 800; letter-spacing: -1px;">{{ block.settings.social_count }}</strong>
+                    <div style="font-size: 1em; margin-top: 7px;">{{ block.settings.social_text | upcase }}</div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+<style>
+   .teacher-section__grid {
+   display: flex;
+   align-items: center; /* Align items vertically to the center */
+}
+
+.teacher-image {
+  flex: 1; /* Allow the image to take up the remaining space */
+  max-width: calc(100% - 350px); /* Ensure the image does not exceed the container size */
+  display: flex;
+  justify-content: center; /* Center the image horizontally if needed */
+  align-items: center; /* Center the image vertically */
+}
+
+.teacher-image img {
+  display: block;
+  max-width: 100%; /* Scale down the image to fit within the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.teacher-card {
+  flex: 0 0 550px; /* Fixed width for the right column */
+  margin-left: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.teacher-card .teacher-content {
+  padding: 20px;
+}
+
+.teacher-card p {
+  color: {{ section.settings.subtitle_color }};
+  text-transform: none;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.teacher-card h2 {
+  color: {{ section.settings.teacher_name_color }};
+  font-size: 2em;
+  margin: 0 0 20px;
+}
+
+.teacher-card div {
+  color: {{ section.settings.text_color }};
+}
+
+.teacher-social img {
+  height: 40px;
+  width: auto;
+}
+
+.teacher-social .social-block {
+  text-align: center;
+  margin-right: 7px;
+}
+
+.teacher-social .social-block:last-child {
+  margin-right: 0;
+}
+
+.teacher-social .social-block strong {
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.teacher-social .social-block div {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  margin-top: 7px;
+}
+
+@media (max-width: 750px) {
+  .teacher-section__grid {
+    flex-direction: column;
+    align-items: flex-start; /* Adjust for vertical layout on smaller screens */
+  }
+
+  .teacher-image,
+  .teacher-card {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .teacher-card {
+    margin-left: 0px !important;
+    padding: 0px !important; /* Use !important to override inline styles */
+  }
+
+  .teacher-card .teacher-content {
+    padding: 0px !important; /* Ensure content padding is also overridden */
+    margin-top: 30px;
+  }
+}
+
+
+</style>
+
+
+
+{% schema %}
+{
+  "name": "Teacher Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "teacher_image",
+      "label": "Teacher Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Meet Your Teacher"
+    },
+    {
+      "type": "text",
+      "id": "teacher_name",
+      "label": "Teacher Name",
+      "default": "Full Name"
+    },
+    {
+      "type": "richtext",
+      "id": "teacher_description",
+      "label": "Teacher Description",
+      "default": "<p>Bio text.</p>"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#0B76DB"
+    },
+    {
+      "type": "color",
+      "id": "teacher_name_color",
+      "label": "Teacher Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Padding",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social",
+      "name": "Social Proof",
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_platform",
+          "label": "Social Platform",
+          "default": "Tik Tok"
+        },
+        {
+          "type": "image_picker",
+          "id": "social_icon",
+          "label": "Social Icon"
+        },
+        {
+          "type": "text",
+          "id": "social_count",
+          "label": "Social Count",
+          "default": "3.7M"
+        },
+        {
+          "type": "text",
+          "id": "social_text",
+          "label": "Social Text",
+          "default": "SUBSCRIBERS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teacher Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

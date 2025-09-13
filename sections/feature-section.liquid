@@ -1,0 +1,298 @@
+{% if section.settings.title != blank %}
+{% style %}
+  {% render 'section-margin' %}
+  
+  .drumming-feature {
+    background-color: {{ section.settings.background_color | default: '#f8f9fa' }};
+    padding-top: {{ section.settings.padding_top | default: '4rem' }};
+    padding-bottom: {{ section.settings.padding_bottom | default: '4rem' }};
+  }
+  
+  .drumming-feature__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  
+  .drumming-feature__image-container {
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .drumming-feature__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .rte p {
+   margin: 1.8rem 0 !important;
+  }
+
+  .rte p:last-child {
+    margin-bottom: 0;
+  }
+
+  .rte br {
+    line-height: 1.1;
+  }
+  
+  /* Vendor-based title color */
+  
+{% liquid
+  if product.type == 'Digital one time'
+    case product.vendor
+      when 'Drumeo'
+        assign title_color = '#0b76db'
+      when 'Pianote'
+        assign title_color = '#F61A30'
+      when 'Guitareo'
+        assign title_color = '#00c9ac'
+      when 'Singeo'
+        assign title_color = '#8300e9'
+      when 'Musora'
+        assign title_color = '#FFAE00'
+      else
+        assign title_color = section.settings.title_color | default: '#0b76db'
+    endcase
+  else
+    assign title_color = '#000000'
+  endif
+%}
+  
+  .drumming-feature__title {
+    color: {{ title_color }};
+  }
+  
+  @media (max-width: 768px) {
+    .drumming-feature {
+      padding-top: {{ section.settings.padding_top_mobile | default: '2rem' }};
+      padding-bottom: {{ section.settings.padding_bottom_mobile | default: '2rem' }};
+    }
+    
+    .drumming-feature__container {
+      padding: 0 1rem;
+    }
+  }
+{% endstyle %}
+<section class="drumming-feature section-{{ section.id }}-padding max-w-7xl mx-auto">
+  
+  <div class="drumming-feature__container">
+  {% comment %} Dynamic Title {% endcomment %}
+    <h4 class="drumming-feature__title">
+      {% if section.settings.title != blank %}
+        {{ section.settings.title }}
+      {% endif %}
+    </h4>
+    
+    {% comment %} Dynamic Subtitle {% endcomment %}
+    <h4 class="drumming-feature__subtitle font-light">
+      {% if section.settings.subtitle != blank %}
+        {{ section.settings.subtitle }}
+      {% endif %}
+    </h4>
+    
+   <div class="pt-4 pb-8 md:pt-6 leading-normal">
+  {% if section.settings.description != blank %}
+    <div class="rte">{{ section.settings.description }}</div>
+  {% endif %}
+  </div>
+    
+    {% comment %} Feature Image {% endcomment %}
+    <div class="drumming-feature__image-container">
+      {% if section.settings.feature_image != blank %}
+        <img class="drumming-feature__image" 
+             src="{{ section.settings.feature_image | image_url: width: 500 }}" 
+             alt="{{ section.settings.feature_image.alt | default: 'Feature image' }}"
+             loading="lazy">
+      {% else %}
+        <img class="drumming-feature__image" 
+             src="https://d21q7xesnoiieh.cloudfront.net/fit-in/980x0…musora/membership/homepage/2024/7-reasons-06.webp" 
+             alt="Feature image placeholder"
+             loading="lazy">
+      {% endif %}
+    </div>
+    
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Feature Section",
+  "tag": "section",
+  "class": "feature-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Don't just keep time.",
+      "info": "Leave empty to use translation file"
+    },
+    {
+      "type": "text",
+      "id": "subtitle", 
+      "label": "Subtitle",
+      "default": "Be the drummer everybody wants in their band.",
+      "info": "Leave empty to use translation file"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Fallback Text",
+      "default": "<p>Default text if no metaobject is found</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image",
+      "info": "Recommended size: 500x400px"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color Override",
+      "info": "Leave empty to use vendor color automatically"
+    },
+    {
+      "type": "header",
+      "content": "Padding Settings"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "options": [
+        {
+          "value": "1rem",
+          "label": "Small (1rem)"
+        },
+        {
+          "value": "2rem",
+          "label": "Medium (2rem)"
+        },
+        {
+          "value": "4rem",
+          "label": "Large (4rem)"
+        },
+        {
+          "value": "6rem",
+          "label": "Extra Large (6rem)"
+        },
+        {
+          "value": "8rem",
+          "label": "XXL (8rem)"
+        }
+      ],
+      "default": "4rem"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "options": [
+        {
+          "value": "1rem",
+          "label": "Small (1rem)"
+        },
+        {
+          "value": "2rem",
+          "label": "Medium (2rem)"
+        },
+        {
+          "value": "4rem",
+          "label": "Large (4rem)"
+        },
+        {
+          "value": "6rem",
+          "label": "Extra Large (6rem)"
+        },
+        {
+          "value": "8rem",
+          "label": "XXL (8rem)"
+        }
+      ],
+      "default": "4rem"
+    },
+    {
+      "type": "select",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile)",
+      "options": [
+        {
+          "value": "1rem",
+          "label": "Small (1rem)"
+        },
+        {
+          "value": "2rem",
+          "label": "Medium (2rem)"
+        },
+        {
+          "value": "3rem",
+          "label": "Large (3rem)"
+        },
+        {
+          "value": "4rem",
+          "label": "Extra Large (4rem)"
+        }
+      ],
+      "default": "2rem"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile)",
+      "options": [
+        {
+          "value": "1rem",
+          "label": "Small (1rem)"
+        },
+        {
+          "value": "2rem",
+          "label": "Medium (2rem)"
+        },
+        {
+          "value": "3rem",
+          "label": "Large (3rem)"
+        },
+        {
+          "value": "4rem",
+          "label": "Extra Large (4rem)"
+        }
+      ],
+      "default": "2rem"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Section",
+      "settings": {
+        "title": "Don't just keep time.",
+        "subtitle": "Be the drummer everybody wants in their band.",
+        "background_color": "#f8f9fa",
+        "padding_top": "4rem",
+        "padding_bottom": "4rem",
+        "padding_top_mobile": "2rem",
+        "padding_bottom_mobile": "2rem"
+      }
+    }
+  ]
+}
+{% endschema %}

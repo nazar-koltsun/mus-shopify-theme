@@ -1,0 +1,582 @@
+<style>
+.laptop-mockup {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.laptop-mockup img {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.laptop-screen {
+    position: absolute;
+    top: 4.5%;
+    left: 8.7%;
+    right: 7.2%;
+    bottom: 12%;
+    z-index: 5;
+}
+
+.laptop-video-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.laptop-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 768px) {
+    .laptop-mockup {
+        margin-bottom: 1.5rem;
+    }
+    
+    .laptop-screen {
+        top: 4.2%;
+        left: 8.5%;
+        right: 7%;
+        bottom: 11.8%;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .laptop-screen {
+        top: 4%;
+        left: 8.2%;
+        right: 6.8%;
+        bottom: 11.5%;
+        border-radius: 4px;
+    }
+}
+
+.description-content {
+    color: white !important;
+}
+
+.description-content * {
+    color: white !important;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .membership-cta__button {
+        margin: 5px 0;
+        max-width: 260px;
+        width: 100%;
+    }
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+}
+</style>
+
+<section class="instruments text-center text-white px-5 sm:px-6 py-10 sm:py-14 lg:py-20 relative z-10" style="background: radial-gradient(43.17% 43.17% at 50% 51.96%, rgba(99, 139, 205, 0.40) 0%, rgba(12, 21, 36, 0.00) 100%), #0C1524;">
+    <div class="container mx-auto px-4 pt-10">
+        <div class="text-center">
+          <div class="max-w-5xl leading-normal md:px-8 mx-auto text-white">
+             <h2 class="mb-4 text-white font-normal">
+                {% if section.settings.instruments_title != blank %}
+                    {{ section.settings.instruments_title }}
+                {% else %}
+                   Unlock It All
+                {% endif %}
+              </h2>
+              <h2 class="mb-8 text-white">
+                <strong>
+                    {% if section.settings.instruments_subtitle != blank %}
+                        {{ section.settings.instruments_subtitle }}
+                    {% else %}
+                       With A Membership
+                    {% endif %}
+                </strong>
+              </h2>
+             <div class="text-white mb-8 description-content">
+                {% if section.settings.instruments_description != blank %}
+                    {{ section.settings.instruments_description }}
+                {% else %}
+                   <p>Get unlimited access to every lesson, course, and practice tool across Drumeo, Guitareo, Pianote, and Singeo—so you can explore more, learn faster, and grow in ways that a single course just can't offer.</p>
+                {% endif %}
+            </div>
+          </div>
+           
+          <div class="button-group py-6 font-bold">
+              {% liquid
+                  assign button_styles = section.settings.button_1_style | default: 'outlined' | append: ',' | append: section.settings.button_2_style | default: 'yellow' | split: ','
+                  assign button_texts = section.settings.cta_learn | default: 'LEARN MORE' | append: '|' | append: section.settings.cta_text | default: 'START FOR FREE' | split: '|'
+                  assign button_urls = section.settings.cta_learn_url | default: '#learn-more' | append: '|' | append: section.settings.cta_url | default: '#start-free' | split: '|'
+              %}
+              
+              {% for button_style in button_styles %}
+                  {% assign index = forloop.index0 %}
+                  
+                  {% render 'button-musora',
+                    link: button_urls[index],
+                    label: button_texts[index],
+                    style: button_style,
+                    class: 'membership-cta'
+                  %}
+              {% endfor %}
+          </div>
+        </div>          
+        <!-- Laptop Mockup with Video -->
+        <div class="laptop-mockup">
+            {% if section.settings.laptop_image != blank %}
+                <img src="{{ section.settings.laptop_image | img_url: '800x' }}" 
+                     alt="{{ section.settings.laptop_alt | default: 'Laptop' }}">
+            {% else %}
+                <img src="https://d21q7xesnoiieh.cloudfront.net/fit-in/800x0/filters:quality(95)/marketing/musora/membership/homepage/2025/laptop-mock.webp" 
+                     alt="Laptop mockup">
+            {% endif %}
+            
+            <div class="laptop-screen pt-10">
+                <div class="laptop-video-container">
+                    {% if section.settings.demo_video != blank %}
+                        <video class="laptop-video" 
+                               src="{{ section.settings.demo_video }}" 
+                               {% if section.settings.autoplay %}autoplay{% endif %}
+                               {% if section.settings.muted %}muted{% endif %}
+                               {% if section.settings.loop %}loop{% endif %}
+                               playsinline>
+                            {% if section.settings.fallback_text != blank %}
+                                <p>{{ section.settings.fallback_text }}</p>
+                            {% endif %}
+                        </video>
+                    {% elsif section.settings.demo_image != blank %}
+                        <img src="{{ section.settings.demo_image | img_url: '800x' }}" 
+                             alt="{{ section.settings.demo_image_alt | default: 'Demo' }}"
+                             class="laptop-video">
+                    {% else %}
+                        <video class="laptop-video" 
+                               src="https://musora-image-processing-cdn.s3.us-east-2.amazonaws.com/marketing/musora/membership/homepage/2025/laptop-video-2.mp4" 
+                               autoplay muted loop playsinline>
+                            <p>Your browser does not support the video tag.</p>
+                        </video>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid using foreach -->
+        {% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+        <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 text-center mx-40">
+            {% if feature_blocks.size > 0 %}
+                {% for block in feature_blocks %}
+                    <div class="text-center" {{ block.shopify_attributes }}>
+                        {% if block.settings.icon != blank %}
+                            <div class="inline-flex items-center justify-center md:justify-start mb-6 rounded-xl bg-black  p-4">
+                                <img src="{{ block.settings.icon | img_url: '120px' }}" 
+                                     class="h-10" 
+                                     alt="{{ block.settings.title }}">
+                            </div>
+                        {% elsif block.settings.icon_number != blank %}
+                            <div class="inline-flex items-center justify-center md:justify-start mb-6 bg-black rounded-xl p-2">
+                                <div class="w-10 bg-white bg-opacity-10 rounded-lg flex items-center justify-center">
+                                    <span class="text-white text-2xl">{{ block.settings.icon_number }}</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        {% if block.settings.title != blank %}
+                            <h3 class="mb-4 leading-normal tracking-normal text-white text-xl sm:text-2xl md:text-3xl">
+                                <strong>{{ block.settings.title }}</strong>
+                            </h3>
+                        {% endif %}
+                        
+                        {% if block.settings.description != blank %}
+                            <p class="leading-relaxed tracking-normal text-white opacity-80 text-lg sm:text-xl md:text-2xl">{{ block.settings.description }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- Default features using foreach -->
+                {% assign default_features = 'Play-Along Lessons,No more "watch then practice." Just hit play and follow along—your 10-minute lesson is your practice.|10 Level Curriculum,Learn the right skills in the right order with our 10-level curriculum for each instrument.|World Class Instructors,Learn from Grammy winners professors touring musicians and more.|Songs & Practice Tools,Gain momentum with interactive exercises speed control looping and progress tracking.' | split: '|' %}
+                
+                {% for feature_data in default_features %}
+                    {% assign feature_info = feature_data | split: ',' %}
+                    {% assign feature_title = feature_info[0] %}
+                    {% assign feature_desc = feature_info[1] %}
+                    
+                    <div class="text-center md:text-left">
+                       <div class="inline-flex items-center justify-center md:justify-start mb-6 bg-black rounded-xl p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="28" viewBox="0 0 34 28" fill="none">
+                                <g clip-path="url(#clip0_276_815{{ forloop.index }})">
+                                    <path opacity="0.4" d="M0 3.4C0 1.52469 1.52469 0 3.4 0H30.6C32.4753 0 34 1.52469 34 3.4V18.7C34 20.5753 32.4753 22.1 30.6 22.1H3.4C1.52469 22.1 0 20.5753 0 18.7V3.4ZM3.4 3.4V18.7H30.6V3.4H3.4ZM5.1 25.5C5.1 24.5597 5.85969 23.8 6.8 23.8H27.2C28.1403 23.8 28.9 24.5597 28.9 25.5C28.9 26.4403 28.1403 27.2 27.2 27.2H6.8C5.85969 27.2 5.1 26.4403 5.1 25.5Z" fill="#FAFAFB"/>
+                                    <path d="M30.5999 3.3999H3.3999V18.6999H30.5999V3.3999ZM22.0999 5.9499V8.0749V13.5999C22.0999 14.5402 20.9577 15.2999 19.5499 15.2999C18.1421 15.2999 16.9999 14.5402 16.9999 13.5999C16.9999 12.6596 18.1421 11.8999 19.5499 11.8999C19.8474 11.8999 20.1343 11.9318 20.3999 11.9955V9.30209L15.2999 11.2146V15.2999C15.2999 16.2402 14.1577 16.9999 12.7499 16.9999C11.3421 16.9999 10.1999 16.2402 10.1999 15.2999C10.1999 14.3596 11.3421 13.5999 12.7499 13.5999C13.0474 13.5999 13.3343 13.6318 13.5999 13.6955V10.6249V8.4999C13.5999 8.14396 13.8177 7.83053 14.1524 7.70303L20.9524 5.15303C21.2127 5.0574 21.5049 5.08928 21.7333 5.24865C21.9618 5.40803 22.0999 5.66834 22.0999 5.9499Z" fill="#FAFAFB"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_276_815{{ forloop.index }}">
+                                        <rect width="34" height="27.2" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                            <h3 class="mb-1 leading-normal text-white text-xl md:text-3xl"><strong>{{ feature_title }}</strong></h3>
+                            <p class="leading-relaxed text-white opacity-80 text-lg md:text-4xl">{{ feature_desc }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Unlock Membership Section",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "instruments_title",
+      "label": "Main Title",
+      "default": "Unlock It All"
+    },
+    {
+      "type": "text",
+      "id": "instruments_subtitle",
+      "label": "Subtitle",
+      "default": "With A Membership"
+    },
+    {
+      "type": "richtext",
+      "id": "instruments_description",
+      "label": "Description",
+      "default": "<p>Get unlimited access to every lesson, course, and practice tool across Drumeo, Guitareo, Pianote, and Singeo—so you can explore more, learn faster, and grow in ways that a single course just can't offer.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Buttons"
+    },
+    {
+      "type": "text",
+      "id": "cta_learn",
+      "label": "Learn More Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "cta_learn_url",
+      "label": "Learn More Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "START FOR FREE"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "select",
+      "id": "button_1_style",
+      "label": "First Button Style",
+      "options": [
+        {
+          "group": "Standard Buttons",
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "group": "Standard Buttons",
+          "value": "secondary",
+          "label": "Secondary"
+        },
+        {
+          "group": "Standard Buttons",
+          "value": "tertiary",
+          "label": "Tertiary"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple",
+          "label": "Simple"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple_secondary",
+          "label": "Simple Secondary"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple_link",
+          "label": "Simple Link"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "black",
+          "label": "Black Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "yellow",
+          "label": "Yellow Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "white",
+          "label": "White Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "outlined",
+          "label": "Outlined Button"
+        }
+      ],
+      "default": "outlined"
+    },
+    {
+      "type": "select",
+      "id": "button_2_style",
+      "label": "Second Button Style",
+      "options": [
+        {
+          "group": "Standard Buttons",
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "group": "Standard Buttons",
+          "value": "secondary",
+          "label": "Secondary"
+        },
+        {
+          "group": "Standard Buttons",
+          "value": "tertiary",
+          "label": "Tertiary"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple",
+          "label": "Simple"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple_secondary",
+          "label": "Simple Secondary"
+        },
+        {
+          "group": "Simple Buttons",
+          "value": "simple_link",
+          "label": "Simple Link"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "black",
+          "label": "Black Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "yellow",
+          "label": "Yellow Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "white",
+          "label": "White Button"
+        },
+        {
+          "group": "Musora Buttons",
+          "value": "outlined",
+          "label": "Outlined Button"
+        }
+      ],
+      "default": "yellow"
+    },
+    {
+      "type": "header",
+      "content": "Demo Video/Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "laptop_image",
+      "label": "Laptop Mockup Image"
+    },
+    {
+      "type": "text",
+      "id": "laptop_alt",
+      "label": "Laptop Image Alt Text",
+      "default": "Laptop mockup"
+    },
+    {
+      "type": "text",
+      "id": "demo_video",
+      "label": "Demo Video URL",
+      "info": "Direct link to MP4/WebM video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "demo_image",
+      "label": "Demo Image (fallback if no video)"
+    },
+    {
+      "type": "text",
+      "id": "demo_image_alt",
+      "label": "Demo Image Alt Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Mute Video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop Video",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "fallback_text",
+      "label": "Video Fallback Text",
+      "default": "Your browser does not support the video tag."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Brand Logo"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_number",
+          "label": "Icon Text/Number",
+          "info": "Enter a number, letter, or symbol (like ▶, ★, ♪, 10) - will show if no image icon is set"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Unlock Membership Section",
+      "blocks": [
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Drumeo"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Pianote"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Guitareo"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Singeo"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Play-Along Lessons",
+            "description": "No more \"watch then practice.\" Just hit play and follow along—your 10-minute lesson is your practice.",
+            "icon_number": "▶"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "10 Level Curriculum",
+            "description": "Learn the right skills in the right order with our 10-level curriculum for each instrument.",
+            "icon_number": "10"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "World Class Instructors",
+            "description": "Learn from Grammy winners, professors, touring musicians, and more.",
+            "icon_number": "★"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Songs & Practice Tools",
+            "description": "Gain momentum with interactive exercises, speed control, looping, and progress tracking.",
+            "icon_number": "♪"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
