@@ -1,3 +1,18 @@
+/* fonts */
+@font-face {
+  font-family: 'FFF Tusj';
+  src: url('{{ "ffftusj.woff2" | asset_url }}') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* colors */
+
+  --blue: #0b76db;
+}
+
 html {
   height: 100%;
 }
@@ -6,6 +21,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 18px;
 }
 
 button {
@@ -13,5 +30,15 @@ button {
   border: none;
   cursor: pointer;
   padding: 0;
+  margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }

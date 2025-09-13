@@ -1,13 +1,28 @@
 {{ 'landing-welcome.css' | asset_url | stylesheet_tag }}
 
 {% assign default_bg = 'landing-welcome-bg.jpg' | asset_url %}
-{% assign bg_image = section.settings.background_image | image_url: width: 1920 | default: default_bg %}
 
-<section class="welcome" style="background-image: url({{ bg_image }});">
-  {{ bg_image }}
-  welcome
+{% if section.settings.background_image != blank %}
+  {% assign bg_image = section.settings.background_image | image_url: width: 1920 %}
+{% else %}
+  {% assign bg_image = default_bg %}
+{% endif %}
+
+<section 
+  class="welcome" 
+  style="background-image: url('{{ bg_image }}');"
+>
+  <div class="welcome-wrapper">
+    <div class="welcome-title-wrapper">
+      <p class="welcome-subtitle">
+        {{ section.settings.subtitle }}
+      </p>
+      <h1 class="welcome-title">
+        {{ section.settings.title }}
+      </h1>
+    </div>
+  </div>
 </section>
-
 
 {% schema %}
 {
@@ -17,6 +32,18 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "WELCOME TO"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "DRUM SCHOOL"
     }
   ]
 }

@@ -2,3 +2,24 @@
   padding: 250px 50px;
   background-color: #fafafa;
 }
+
+.welcome-wrapper {
+  max-width: 1082px;
+  margin: 0 auto;
+}
+
+.welcome-title-wrapper {
+  text-align: center;
+}
+
+.welcome-subtitle {
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+}
+
+.welcome-title {
+  font-family: 'FFF Tusj', cursive;
+}
