@@ -1,6 +1,7 @@
 {{ 'landing-welcome.css' | asset_url | stylesheet_tag }}
 
 {% assign default_bg = 'landing-welcome-bg.jpg' | asset_url %}
+{% assign default_bg_mobile = 'landing-welcome-bg-mob.jpg' | asset_url %}
 
 {% if section.settings.background_image != blank %}
   {% assign bg_image = section.settings.background_image | image_url: width: 1920 %}
@@ -8,7 +9,22 @@
   {% assign bg_image = default_bg %}
 {% endif %}
 
-<article class="welcome" style="background-image: url('{{ bg_image }}');">
+{% if section.settings.background_image_mobile != blank %}
+  {% assign bg_image_mobile = section.settings.background_image_mobile | image_url: width: 780 %}
+{% else %}
+  {% assign bg_image_mobile = default_bg_mobile %}
+{% endif %}
+
+<style>
+  .welcome {
+    background-image: url('{{ bg_image }}');
+    @media (max-width: 680px) {
+      background-image: url('{{ bg_image_mobile }}');
+    }
+  }
+</style>
+
+<article class="welcome">
   <div class="welcome-wrapper">
     <div class="welcome-title-wrapper">
       <p class="welcome-subtitle">
@@ -93,6 +109,11 @@
         "type": "image_picker",
         "id": "background_image",
         "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mobile",
+        "label": "Background Image Mobile"
       },
       {
         "type": "text",

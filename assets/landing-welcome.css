@@ -11,6 +11,7 @@
 
   @media (max-width: 768px) {
     padding: 65px 46px 50px;
+    background-position: initial;
   }
 }
 
@@ -57,6 +58,7 @@
   color: var(--black);
 
   @media (max-width: 768px) {
+    padding: 0 15px;
     font-size: 22px;
     line-height: 30px;
   }
@@ -73,7 +75,7 @@
 
   @media (max-width: 768px) {
     font-size: 14px;
-    line-height: 24px; 
+    line-height: 24px;
   }
 }
 
@@ -83,7 +85,7 @@
 
   @media (max-width: 768px) {
     font-size: 14px;
-    line-height: 24px; 
+    line-height: 24px;
   }
 }
 
@@ -92,6 +94,11 @@
   font-size: 18px;
   line-height: 28px;
   color: #0c1524b3;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 24px;
+  }
 }
 
 .welcome-bundle-list {
@@ -110,7 +117,7 @@
     flex-direction: column;
     align-items: center;
     gap: 44px;
-    margin-top: 41px;
+    margin-top: 30px;
   }
 }
 
@@ -184,9 +191,14 @@
       background-color: var(--blue);
     }
 
-    & .welcome-bundle-btn {
+    .welcome-bundle-btn {
       margin-top: 25px;
       background-color: var(--blue);
+
+      @media (max-width: 768px) {
+        font-size: 18px;
+        padding: 7px 20px;
+      }
     }
 
     @media (max-width: 1150px) {
@@ -203,11 +215,17 @@
       &::before {
         top: -6px;
         font-size: 15px;
-        padding: 1px 15px;
+        padding: 1px 18px;
       }
 
       &:hover {
         transform: translate(-50%) translateY(-50%) scale(1.2);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-bundle-inc-title {
+        font-size: 13px;
       }
     }
 
@@ -233,8 +251,8 @@
         height: 148px;
       }
 
-      .welcome-bundle-price-old, 
-      .welcome-bundle-price-new, 
+      .welcome-bundle-price-old,
+      .welcome-bundle-price-new,
       .welcome-bundle-price-save {
         font-size: 18px;
       }
@@ -383,7 +401,6 @@
       }
     }
   }
-
 
   @media (max-width: 680px) {
     margin-top: 7px;
