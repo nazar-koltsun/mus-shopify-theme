@@ -105,6 +105,13 @@
   @media (max-width: 768px) {
     margin-top: 90px;
   }
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+    margin-top: 41px;
+  }
 }
 
 .welcome-bundle-item {
@@ -131,6 +138,23 @@
     padding: 30px;
     padding-bottom: 26px;
     border-radius: 23px;
+  }
+
+  @media (max-width: 680px) {
+    width: 234px;
+    min-height: 458px;
+
+    &:nth-child(2) {
+      order: 0;
+    }
+
+    &:nth-child(1) {
+      order: 2;
+    }
+
+    &:nth-child(3) {
+      order: 1;
+    }
   }
 
   &.best-deal-bundle {
@@ -174,9 +198,57 @@
       z-index: 1;
       padding: 30px;
       padding-bottom: 25px;
+      border: 6px solid var(--blue);
+
+      &::before {
+        top: -6px;
+        font-size: 15px;
+        padding: 1px 15px;
+      }
 
       &:hover {
         transform: translate(-50%) translateY(-50%) scale(1.2);
+      }
+    }
+
+    @media (max-width: 680px) {
+      position: relative;
+      left: 0;
+      top: 0;
+      transform: none;
+      width: 280px;
+      padding: 34px;
+      padding-bottom: 32px;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      .welcome-bundle-item-title {
+        font-size: 23px;
+      }
+
+      .welcome-bundle-image {
+        margin-top: 14px;
+        height: 148px;
+      }
+
+      .welcome-bundle-price-old, 
+      .welcome-bundle-price-new, 
+      .welcome-bundle-price-save {
+        font-size: 18px;
+      }
+
+      .welcome-bundle-price-new {
+        font-size: 30px;
+      }
+
+      .welcome-bundle-price-save {
+        font-size: 16px;
+      }
+
+      .welcome-bundle-inc-list p {
+        font-size: 13px;
       }
     }
   }
@@ -199,6 +271,10 @@
   max-width: 100%;
   align-self: center;
   margin-top: 9px;
+
+  @media (max-width: 680px) {
+    height: 131px;
+  }
 }
 
 .welcome-bundle-price {
@@ -297,6 +373,20 @@
         height: 16px;
       }
     }
+
+    @media (max-width: 680px) {
+      font-size: 12px;
+      line-height: 19px;
+
+      &:not(:last-child) {
+        margin-bottom: 3px;
+      }
+    }
+  }
+
+
+  @media (max-width: 680px) {
+    margin-top: 7px;
   }
 }
 
@@ -308,6 +398,12 @@
       margin-top: -4px;
       width: 14px;
       height: 14px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    & svg {
+      margin-top: -2px;
     }
   }
 }
