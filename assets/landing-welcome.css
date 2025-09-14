@@ -195,6 +195,7 @@
 
 .welcome-bundle-image {
   width: auto;
+  max-height: 173px;
   max-width: 100%;
   align-self: center;
   margin-top: 9px;
