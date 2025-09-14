@@ -4,6 +4,14 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (max-width: 1150px) {
+    padding: 100px 46px 90px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 65px 46px 50px;
+  }
 }
 
 .welcome-wrapper {
@@ -21,6 +29,11 @@
   line-height: 42px;
   letter-spacing: 0.05em;
   color: var(--blue);
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 }
 
 .welcome-title {
@@ -31,6 +44,10 @@
   letter-spacing: 0.05em;
   text-align: center;
   color: #5f5f5f;
+
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
 }
 
 .welcome-title-bottom {
@@ -38,6 +55,11 @@
   font-size: 28px;
   line-height: 40px;
   color: var(--black);
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 
 .welcome-description {
@@ -48,11 +70,21 @@
   font-size: 18px;
   line-height: 28px;
   color: #0c1524b3;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 24px; 
+  }
 }
 
 .welcome-bundle {
   margin-top: 28px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 24px; 
+  }
 }
 
 .welcome-bundle-title {
@@ -63,19 +95,25 @@
 }
 
 .welcome-bundle-list {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 25px;
   margin-top: 120px;
+
+  @media (max-width: 768px) {
+    margin-top: 90px;
+  }
 }
 
 .welcome-bundle-item {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex-shrink: 0;
   min-height: 611px;
-  max-width: 309px;
+  width: 309px;
   padding: 40px;
   border-radius: 30px;
   background-color: #fff;
@@ -83,7 +121,16 @@
   transition: transform 0.3s ease;
 
   &:hover {
+    z-index: 2;
     transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    width: 280px;
+    min-height: 540px;
+    padding: 30px;
+    padding-bottom: 26px;
+    border-radius: 23px;
   }
 
   &.best-deal-bundle {
@@ -117,6 +164,21 @@
       margin-top: 25px;
       background-color: var(--blue);
     }
+
+    @media (max-width: 1150px) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(1.1);
+      transform-origin: center;
+      z-index: 1;
+      padding: 30px;
+      padding-bottom: 25px;
+
+      &:hover {
+        transform: translate(-50%) translateY(-50%) scale(1.2);
+      }
+    }
   }
 }
 
@@ -125,6 +187,10 @@
   font-size: 27px;
   letter-spacing: 0.05em;
   color: #000;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 .welcome-bundle-image {
@@ -149,12 +215,20 @@
   letter-spacing: 0.05em;
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .welcome-bundle-price-new {
   font-size: 35px;
   color: #000;
   text-decoration: none;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
 }
 
 .welcome-bundle-price-save {
@@ -166,6 +240,10 @@
   margin-top: 17px;
   margin-bottom: 20px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    margin-top: 13px;
+  }
 }
 
 .welcome-bundle-inc-title {
@@ -173,6 +251,11 @@
   font-size: 16px;
   line-height: 24px;
   color: #000;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 
 .welcome-bundle-inc-list {
@@ -202,9 +285,28 @@
       background-position: center;
       background-repeat: no-repeat;
     }
+
+    @media (max-width: 768px) {
+      padding-left: 24px;
+      font-size: 13px;
+      line-height: 21px;
+
+      &::before {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 }
 
 .welcome-bundle-btn {
   margin-top: auto;
+
+  @media (max-width: 768px) {
+    & svg {
+      margin-top: -4px;
+      width: 14px;
+      height: 14px;
+    }
+  }
 }
