@@ -23,34 +23,65 @@
       <p class="welcome-description">
         {{ section.settings.description }}
       </p>
-      </div>
+    </div>
 
-      <div class="welcome-bundle">
-        <p class="welcome-bundle-title">
-          {{ section.settings.bundle_title }}
-        </p>
+    <div class="welcome-bundle">
+      <p class="welcome-bundle-title">
+        {{ section.settings.bundle_title }}
+      </p>
 
-        <ul class="welcome-bundle-list">
-          <li class="welcome-bundle-item">
-            <h3 class="welcome-bundle-title">The Essentials Bundle</h3>
+      <ul class="welcome-bundle-list">
+        {% for block in section.blocks %}
+          <li class="welcome-bundle-item{% if block.settings.best_deal %} best-deal-bundle{% endif %}">
+            <h3 class="welcome-bundle-item-title">{{ block.settings.title }}</h3>
 
-            <img class="welcome-bundle-image" src="{{ 'landing-welcome-bundle-1.png' | asset_url }}" width="145" height="173" alt="The Essentials Bundle">
+            {% if block.settings.image != blank %}
+              <img
+                class="welcome-bundle-image"
+                src="{{ block.settings.image | image_url }}"
+                width="100%"
+                height="auto"
+                alt="{{ block.settings.title }}">
+            {% else %}
+              {% assign default_images = 'landing-welcome-bundle-1.png,landing-welcome-bundle-2.png,landing-welcome-bundle-3.png' | split: ',' %}
+              {% assign image_index = forloop.index0 %}
+              <img
+                class="welcome-bundle-image"
+                src="{{ default_images[image_index] | asset_url }}"
+                width="100%"
+                height="auto"
+                alt="{{ block.settings.title }}">
+            {% endif %}
 
             <div class="welcome-bundle-price">
               <span class="welcome-bundle-price-old">
-                $74
+                {{ block.settings.price_old }}
               </span>
               <span class="welcome-bundle-price-new">
-                $59
+                {{ block.settings.price_new }}
               </span>
               <span class="welcome-bundle-price-save">
-                Save 25%
+                {{ block.settings.price_save }}
               </span>
             </div>
 
+            <div class="welcome-bundle-inc">
+              <p class="welcome-bundle-inc-title">
+                {{ block.settings.inc_title }}
+              </p>
+              <div class="welcome-bundle-inc-list">
+                {{ block.settings.inc_items }}
+              </div>
+            </div>
+
+            <button class="welcome-bundle-btn btn">
+              ADD TO CART
+              {% render 'icon-rigth-arrow' %}
+            </button>
           </li>
-        </ul>
-      </div>  
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </article>
 
@@ -62,12 +93,14 @@
         "type": "image_picker",
         "id": "background_image",
         "label": "Background Image"
-      }, {
+      },
+      {
         "type": "text",
         "id": "subtitle",
         "label": "Subtitle",
         "default": "WELCOME TO"
-      }, {
+      },
+      {
         "type": "text",
         "id": "title",
         "label": "Title",
@@ -78,18 +111,85 @@
         "id": "title_bottom",
         "label": "Title Bottom",
         "default": "Get a free QuietPad, Sticks, and PadStand when you join Drumeo."
-      },
-      {
+      }, {
         "type": "text",
         "id": "description",
         "label": "Description",
         "default": "Whether you're brand new to the kit, coming back after some time away, or looking to level up your skills, you'll find the perfect deal with Drumeo's Back to School Sale."
-      },
-      {
+      }, {
+        "type": "header",
+        "content": "Bundle"
+      }, {
         "type": "text",
         "id": "bundle_title",
         "label": "Bundle Title",
         "default": "Choose the bundle that's best for you:"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "bundle",
+        "name": "Bundle",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "The Essentials Bundle"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "price_old",
+            "label": "Price Old",
+            "default": "$74"
+          },
+          {
+            "type": "text",
+            "id": "price_new",
+            "label": "Price New",
+            "default": "$59"
+          }, {
+            "type": "text",
+            "id": "price_save",
+            "label": "Price Save",
+            "default": "Save 25%"
+          }, {
+            "type": "text",
+            "id": "inc_title",
+            "label": "Inc Title",
+            "default": "What is included:"
+          }, {
+            "type": "richtext",
+            "id": "inc_items",
+            "label": "Inc Items",
+            "default": "<p>Quiet Pad</p><p>Drumsticks</p><p>Free US Shipping</p>"
+          }, {
+            "type": "checkbox",
+            "id": "best_deal",
+            "label": "Best Deal",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Welcome",
+        "blocks": [
+          {
+            "type": "bundle"
+          }, {
+            "type": "bundle"
+          }, {
+            "type": "bundle"
+          }
+        ]
       }
     ]
   }

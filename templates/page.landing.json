@@ -3,8 +3,39 @@
   "sections": { 
     "welcome": {
       "type": "landing-welcome",
-      "settings": {}
-      }
-    },
+      "settings": {},
+      "blocks": {
+        "bundle1": {
+          "type": "bundle",
+        },
+        "bundle2": {
+          "type": "bundle",
+          "settings": {
+            "title": "The Ultimate Bundle",
+            "price_old": "$393",
+            "price_new": "$240",
+            "price_save": "Save 64%",
+            "inc_items": "<p>1 Year of Unlimited Drum Lessons</p><p>Quiet Pad</p><p>Pad Stand</p><p>Drumsticks</p><p>Free US Shipping</p>",
+            "best_deal": true
+          }
+        },
+        "bundle3": {
+          "type": "bundle",
+          "settings": {
+            "title": "The Practice Bundle",
+            "price_old": "$157",
+            "price_new": "$99",
+            "price_save": "Save 61%",
+            "inc_items": "<p>Quiet Pad</p><p>PadStand</p><p>Drumsticks</p><p>Free US Shipping</p>"
+          }
+        }
+      },
+      "block_order": [
+        "bundle1",
+        "bundle2",
+        "bundle3"
+      ]
+    }
+  },
   "order":["welcome"]
 }

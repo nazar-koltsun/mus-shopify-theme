@@ -4,7 +4,7 @@
   src: url('ffftusj.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: normal;
+  font-display: swap;
 }
 
 :root {
@@ -12,6 +12,7 @@
 
   --blue: #0b76db;
   --black: #0c1524;
+  --ghost-white: #fafafb;
 }
 
 * {
@@ -52,4 +53,26 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 9px;
+  font-size: 21px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--ghost-white);
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  border-radius: 20px;
+  padding: 8px 20px;
+  background-color: var(--black);
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
 }
