@@ -71,6 +71,7 @@ ul {
   background-color: var(--black);
   transition: opacity 0.3s ease;
   cursor: pointer;
+
   
   &:hover {
     opacity: 0.8;
@@ -83,4 +84,8 @@ ul {
   @media (max-width: 680px) {
     padding: 6px 20px;
   }
+}
+
+a.btn {
+  text-decoration: none;
 }

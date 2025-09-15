@@ -1,0 +1,143 @@
+{{ 'landing-bundles.css' | asset_url | stylesheet_tag }}
+
+<section class="landing-bundles">
+  <div class="landing-bundles-wrap">
+    <h2 class="landing-bundles-title">
+      {{ section.settings.title }}
+    </h2>
+
+    <ul class="landing-bundles-list">
+      {% for block in section.blocks %}
+        <li class="landing-bundles-item{% if block.settings.is_reversed %} reversed{% endif %}">
+
+          <div class="landing-bundle-info">
+            {% if block.settings.is_best_deal %}
+              <div class="landing-bundle-best-deal">
+                {{ block.settings.best_deal_title }}
+              </div>
+            {% endif %}
+
+            <h3 class="landing-bundle-title">{{ block.settings.title }}</h3>
+
+            <strong class="landing-bundle-subtitle">
+              {{ block.settings.subtitle }}
+            </strong>
+
+            <div class="landing-bundle-description">
+              {{ block.settings.description }}
+            </div>
+
+            <a href="{{ block.settings.link_link }}" class="btn landing-bundle-link">
+              <span>
+                {{ block.settings.link_label }}
+              </span>
+              {% render 'icon-rigth-arrow' %}
+            </a>
+          </div>
+
+          {% if block.settings.image != blank %}
+            <div class="landing-bundle-image-wrap">
+              <img
+                class="landing-bundle-image"
+                src="{{ block.settings.image | image_url }}"
+                width="100%"
+                height="auto"
+                loading="lazy"
+                alt="{{ block.settings.title }}">
+            </div>
+          {% else %}
+            {% assign default_images = 'landing-bundles-bundle-1.webp,landing-bundles-bundle-2.webp,landing-bundles-bundle-3.webp' | split: ',' %}
+            {% assign image_index = forloop.index0 %}
+
+            <div class="landing-bundle-image-wrap">
+              <img
+                class="landing-bundle-image"
+                src="{{ default_images[image_index] | asset_url }}"
+                width="100%"
+                height="auto"
+                loading="lazy"
+                alt="{{ block.settings.title }}">
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Landing Bundles",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Take a closer look at the bundles."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "bundle",
+        "name": "Bundle",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "The Essentials Bundle"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Every drummer needs a practice pad."
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "<p>And the Drumeo QuietPad lets you practice in any environment.<br><br>This portable, double-sided practice pad features a traditional and quiet surface, so you can practice late into the night.<br><br>You'll also get a pair of Drumeo Vater 5A drumsticks.</p>"
+          },
+          {
+            "type": "text",
+            "id": "link_label",
+            "label": "Link Label",
+            "default": "Get The Bundle"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link URL",
+            "default": "/"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "is_reversed",
+            "label": "Is Reversed",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "is_best_deal",
+            "label": "Is Best Deal",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "best_deal_title",
+            "label": "Best Deal Title",
+            "default": "BEST DEAL"
+          }
+        ]
+      }
+    ]
+
+  }
+{% endschema %}

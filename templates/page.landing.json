@@ -3,7 +3,6 @@
   "sections": { 
     "welcome": {
       "type": "landing-welcome",
-      "settings": {},
       "blocks": {
         "bundle1": {
           "type": "bundle",
@@ -35,7 +34,38 @@
         "bundle2",
         "bundle3"
       ]
+    },
+    "bundles": {
+      "type": "landing-bundles",
+      "blocks": {
+        "bundle1": {
+          "type": "bundle",
+        },
+        "bundle2": {
+          "type": "bundle",
+          "settings": {
+            "title": "The better bundle",
+            "subtitle": "The ultimate practice pad setup.",
+            "description": "<p>Stop balancing your practice pad on your lap, coffee table, or worse… A standard snare stand with claws overhanging like a bad overbite 😬.<br><br>The Drumeo PadStand is engineered to fit your practice pad perfectly. We've handled the setup. Now it's your turn to handle those rudiments.</p>",
+            "is_reversed": true
+          }
+        },
+        "bundle3": {
+          "type": "bundle",
+          "settings": {
+            "title": "The ultimate bundle",
+            "subtitle": "Everything you need to learn the drums.",
+            "description": "<p>Guided courses from the world's best drummers? Check.<br><br>Thousands of popular songs to play (including drumless tracks)? Check.<br><br>A supportive community of like-minded drummers? Check and check.<br><br>Drumeo is the #1 online drum education platform for a reason. Get a year of step-by-step lessons and crush your goals with a guided plan and personalized support.<br><br>Welcome to Drum School.</p>",
+            "is_best_deal": true,
+          }
+        }
+      },
+      "block_order": [
+        "bundle1",
+        "bundle2",
+        "bundle3"
+      ]
     }
   },
-  "order":["welcome"]
+  "order":["welcome", "bundles"]
 }
