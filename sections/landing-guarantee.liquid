@@ -1,0 +1,142 @@
+{{ 'landing-guarantee.css' | asset_url | stylesheet_tag }}
+
+{% assign bg_image = section.settings.bg_image | image_url: width: 1920 %}
+
+{% if section.settings.bg_image == blank %}
+  {% assign bg_image = 'guarantee-bg.svg' | asset_url %}
+{% endif %}
+
+<style>
+  .landing-guarantee {
+    background-image: url('{{ bg_image }}');
+  }
+</style>
+
+<section class="landing-guarantee">
+  <div class="landing-guarantee-wrap">
+    {% if section.settings.badge_image != blank %}
+      <img
+        {{ section.settings.badge_image | image_url: width: 176 | image_tag }}
+        loading="lazy"
+        class="landing-guarantee-badge"
+        width="176"
+        height="177"
+        alt="Guarantee Badge">
+
+    {% else %}
+      <img
+        src="{{ 'guarantee-badge.png' | asset_url }}"
+        loading="lazy"
+        class="landing-guarantee-badge"
+        width="176"
+        height="177"
+        alt="Guarantee Badge">
+    {% endif %}
+
+    <div class="landing-guarantee-top">
+      <h2 class="landing-guarantee-title">{{ section.settings.heading }}</h2>
+      <p class="landing-guarantee-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <p class="landing-guarantee-desc">{{ section.settings.description }}</p>
+
+    <ul class="landing-guarantee-steps">
+      {% for block in section.blocks %}
+        <li class="landing-guarantee-step">
+
+          {% if block.settings.step_image != blank %}
+            <img
+              src="{{ block.settings.step_image | image_url }}"
+              loading="lazy"
+              class="landing-guarantee-step-image"
+              width="48"
+              height="48"
+              alt="Guarantee Step Image">
+          {% else %}
+            {% assign default_images = 'step-1.svg, step-2.svg, step-3.svg' | split: ',' %}
+            {% assign image_index = forloop.index0 %}
+
+            <img
+              src="{{ default_images[image_index] | asset_url }}"
+              loading="lazy"
+              class="landing-guarantee-step-image"
+              width="48"
+              height="48"
+              alt="Guarantee Step Image">
+          {% endif %}
+
+          <div class="landing-guarantee-step-desc">
+            {{ block.settings.step_description }} 
+
+
+            {% if block.settings.has_info_icon %}
+              <button class="landing-guarantee-info-btn">
+                {% render 'icon-info' %}
+              </button>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Landing Guarantee",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "badge_image",
+        "label": "Badge Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Happy student guarantee."
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Test-drive your lessons for 90 days. Zero risk."
+      }, {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description",
+        "default": "Online lessons can be intimidating. Maybe you're wondering if they work, or if you'll use them enough - or if you'll even enjoy the experience. So we're removing the risk with our 90-day guarantee. More than anything, we want to make sure you have a POSITIVE experience developing new skills and gaining confidence on the piano."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "step",
+        "name": "Step",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "step_image",
+            "label": "Step Image"
+          }, {
+            "type": "richtext",
+            "id": "step_description",
+            "label": "Step Description",
+            "default": "<p>Start your<br> 30-day trial today.</p>"
+          }, {
+            "type": "checkbox",
+            "id": "has_info_icon",
+            "label": "Has Info Icon",
+            "default": false
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

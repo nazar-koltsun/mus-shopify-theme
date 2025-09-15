@@ -65,7 +65,33 @@
         "bundle2",
         "bundle3"
       ]
+    },
+    "guarantee": {
+      "type": "landing-guarantee",
+      "blocks": {
+        "step1": {
+          "type": "step"
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "step_description": "<p>After your trial ends, you'll have <br> 90 days to keep learning risk-free.</p>"
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "step_description": "<p>Change your mind? <br> Get a refund.</p>",
+            "has_info_icon": true
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3"
+      ]
     }
   },
-  "order":["welcome", "bundles"]
+  "order":["welcome", "bundles", "guarantee"]
 }

@@ -1,9 +1,9 @@
 .landing-bundles {
-  padding: 238px 50px 173px;
+  padding: 238px 50px 340px;
   background-color: var(--ghost-white);
 
   @media (max-width: 1150px) {
-    padding: 150px 50px 160px;
+    padding: 150px 50px 260px;
   }
 
   @media (max-width: 768px) {
@@ -86,6 +86,10 @@
   @media (max-width: 768px) {
     font-size: 14px;
     line-height: 24px;
+  }
+
+  @media (min-width: 520px) and (max-width: 960px) {
+    padding: 0 30px;
   }
 }
 
