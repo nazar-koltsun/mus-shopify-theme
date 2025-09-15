@@ -6,12 +6,16 @@
   background-repeat: no-repeat;
 
   @media (max-width: 1150px) {
-    padding: 100px 46px 90px;
+    padding: 100px 46px 160px;
   }
 
   @media (max-width: 768px) {
-    padding: 65px 46px 50px;
+    padding: 65px 46px 125px;
     background-position: initial;
+  }
+
+  @media (max-width: 680px) {
+    padding-bottom: 50px;
   }
 }
 
