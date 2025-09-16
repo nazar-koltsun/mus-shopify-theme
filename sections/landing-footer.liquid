@@ -11,6 +11,9 @@
         <p class="landing-footer-connect-desc">
           {{ section.settings.connect_desc }}
         </p>
+        <p class="landing-footer-connect-desc-mobile">
+          {{ section.settings.connect_desc_mobile }}
+        </p>
 
         {% form 'customer'
           , id: 'ContactFooter'
@@ -39,16 +42,286 @@
 
         <div class="landing-footer-apps">
           <a href="{{ section.settings.app_store_link }}" target="_blank">
-            <img src="{{ 'apple-store.png' | asset_url }}" width="139" height="42" alt="App Store">
+            <img
+              src="{{ 'apple-store.png' | asset_url }}"
+              width="139"
+              height="42"
+              loading="lazy"
+              alt="App Store">
           </a>
           <a href="{{ section.settings.google_play_link }}" target="_blank">
-            <img src="{{ 'google-play.png' | asset_url }}" width="140" height="42" alt="Google Play">
+            <img
+              src="{{ 'google-play.png' | asset_url }}"
+              width="140"
+              height="42"
+              loading="lazy"
+              alt="Google Play">
           </a>
         </div>
 
       </div>
+
+      <div class="landing-footer-links">
+        <h3 class="landing-footer-title">RESOURCES</h3>
+
+        <ul class="landing-footer-links-list">
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/beat/"
+              target="_blank">The Drumeo Beat</a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/beat/rudiments/"
+              target="_blank">
+              40 Drum Rudiments
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/free-playalongs"
+              target="_blank">
+              9 Free Play-Alongs
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/beat/"
+              target="_blank">
+              Video Drum Lessons
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/getting-started"
+              target="_blank">
+              Getting Start
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="landing-footer-links">
+        <h3 class="landing-footer-title">DRUM SHOP
+        </h3>
+
+        <ul class="landing-footer-links-list">
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/"
+              target="_blank">
+              Drumeo Membership
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/drumshop/quietpad"
+              target="_blank">
+              Drumeo QuietPad
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/drumshop/quietkick"
+              target="_blank">
+              Drumeo QuietKick
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/drumshop/beginner-book"
+              target="_blank">
+              Beginner Drum Book
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.drumeo.com/clothing"
+              target="_blank">
+              Drumeo Merch
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="landing-footer-links">
+        <h3 class="landing-footer-title">OTHER SITES</h3>
+
+        <ul class="landing-footer-links-list">
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.musora.com/"
+              target="_blank">
+              Musora
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.pianote.com/"
+              target="_blank">
+              Pianote
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.guitareo.com/"
+              target="_blank">
+              Guitareo
+            </a>
+          </li>
+
+          <li class="landing-footer-link-item">
+            <a
+              class="landing-footer-link"
+              href="https://www.singeo.com/"
+              target="_blank">
+              Singeo
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
     </div>
 
+  </div>
+
+  <div class="landing-footer-bottom">
+    <div class="landing-footer-bottom-wrap">
+      {% assign default_logo = 'landing-footer-logo.svg' | asset_url %}
+      {% assign logo = section.settings.footer_logo %}
+
+      {% if section.settings.footer_logo != blank %}
+        <img
+          src="{{ logo | image_url }}"
+          class="landing-footer-logo"
+          width="152"
+          height="38"
+          loading="lazy"
+          alt="Footer Logo">
+      {% else %}
+        <img
+          src="{{ default_logo }}"
+          class="landing-footer-logo"
+          width="152"
+          height="38"
+          loading="lazy"
+          alt="Footer Logo">
+      {% endif %}
+
+      <a
+        class="landing-footer-address-link landing-footer-link"
+        href="{{ section.settings.address_link }}"
+        target="_blank">
+        {{ section.settings.address_text }}
+      </a>
+
+      <div class="landing-footer-contacts-links">
+        <a
+          class="landing-footer-link"
+          type="tel"
+          href="tel:{{ section.settings.phone }}">
+          {{ section.settings.phone_title }}: {{ section.settings.phone }}
+        </a>
+        <span class="landing-footer-link-separator">/</span>
+        <a
+          class="landing-footer-link"
+          type="tel"
+          href="tel:{{ section.settings.phone_direct }}">
+          {{ section.settings.phone_direct_title }}: {{ section.settings.phone_direct }}
+        </a>
+        <span class="landing-footer-link-separator">/</span>
+        <a class="landing-footer-link" href="mailto:{{ section.settings.email }}">
+          {{ section.settings.email }}
+        </a>
+      </div>
+
+      <div class="landing-footer-social-links">
+        <a
+          class="landing-footer-social-link"
+          href="{{ section.settings.social_facebook_link }}"
+          target="_blank"
+          title="Facebook">
+          {% if section.settings.social_facebook_icon != blank %}
+            <img
+              src="{{ section.settings.social_facebook_icon | image_url }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              alt="Facebook">
+          {% else %}
+            {% render 'icon-landing-facebook' %}
+          {% endif %}
+        </a>
+        <a
+          class="landing-footer-social-link"
+          href="{{ section.settings.social_youtube_link }}"
+          target="_blank"
+          title="YouTube">
+          {% if section.settings.social_youtube_icon != blank %}
+            <img
+              src="{{ section.settings.social_youtube_icon | image_url }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              alt="YouTube">
+          {% else %}
+            {% render 'icon-landing-youtube' %}
+          {% endif %}
+        </a>
+        <a
+          class="landing-footer-social-link"
+          href="{{ section.settings.social_instagram_link }}"
+          target="_blank"
+          title="Instagram">
+          {% if section.settings.social_instagram_icon != blank %}
+            <img
+              src="{{ section.settings.social_instagram_icon | image_url }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              alt="Instagram">
+          {% else %}
+            {% render 'icon-landing-instagram' %}
+          {% endif %}
+        </a>
+      </div>
+
+      <p class="landing-footer-copyright">
+        {{ section.settings.copyright_text }} -
+        <a href="{{ section.settings.terms_link }}" target="_blank">{{ section.settings.terms_title }}</a>
+        <span class="landing-footer-link-separator">/</span>
+        <a href="{{ section.settings.privacy_link }}" target="_blank">{{ section.settings.privacy_title }}</a>
+        <span class="landing-footer-link-separator">/</span>
+        <a href="{{ section.settings.careers_link }}" target="_blank">{{ section.settings.careers_title }}</a>
+        <span class="landing-footer-link-separator">/</span>
+        <a href="{{ section.settings.brand_guide_link }}" target="_blank">{{ section.settings.brand_guide_title }}</a>
+      </p>
+
+    </div>
   </div>
 </div>
 
@@ -74,6 +347,12 @@
       },
       {
         "type": "text",
+        "id": "connect_desc_mobile",
+        "label": "Connect Description Mobile",
+        "default": "Receive free weekly lessons. "
+      },
+      {
+        "type": "text",
         "id": "subscribe_button_text",
         "label": "Subscribe Button Text",
         "default": "SIGN UP"
@@ -95,6 +374,126 @@
         "id": "google_play_link",
         "label": "Google Play Link",
         "default": "https://play.google.com/store/apps/details?id=com.drumeo"
+      }, {
+        "type": "header",
+        "content": "Footer bottom"
+      }, {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Footer Logo"
+      }, {
+        "type": "text",
+        "id": "address_text",
+        "label": "Address Text",
+        "default": "107-31265 Wheel Ave. Abbotsford, BC, V2T 6H2 Canada"
+      }, {
+        "type": "text",
+        "id": "address_link",
+        "label": "Address Link",
+        "default": "https://www.google.ca/maps/place/Drumeo/@49.044632,-122.360213,17z/data=!3m1!4b1!4m5!3m4!1s0x5485caba0962af9d:0x2c421b6c411b4667!8m2!3d49.044632!4d-122.3580243?shorturl=1"
+      }, {
+        "type": "text",
+        "id": "phone_title",
+        "label": "Phone toll free title",
+        "default": "Toll Free"
+      }, {
+        "type": "text",
+        "id": "phone",
+        "label": "Phone number",
+        "default": "1-800-439-8921"
+      }, {
+        "type": "text",
+        "id": "phone_direct_title",
+        "label": "Phone Direct Title",
+        "default": "Direct"
+      }, {
+        "type": "text",
+        "id": "phone_direct",
+        "label": "Phone Direct number",
+        "default": "1-604-855-7605"
+      }, {
+        "type": "text",
+        "id": "email",
+        "label": "Email",
+        "default": "support@drumeo.com"
+      }, {
+        "type": "header",
+        "content": "Social Links"
+      }, {
+        "type": "image_picker",
+        "id": "social_facebook_icon",
+        "label": "Social Facebook Icon"
+      }, {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Social Facebook Link",
+        "default": "https://www.facebook.com/drumeo"
+      }, {
+        "type": "image_picker",
+        "id": "social_youtube_icon",
+        "label": "Social YouTube Icon"
+      }, {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Social YouTube Link",
+        "default": "https://www.youtube.com/drumeo"
+      }, {
+        "type": "image_picker",
+        "id": "social_instagram_icon",
+        "label": "Social Instagram Icon"
+      }, {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Social Instagram Link",
+        "default": "https://www.instagram.com/drumeo"
+      }, {
+        "type": "header",
+        "content": "Copyright"
+      }, {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Copyright Text",
+        "default": "Musora Media, Inc. © 2025"
+      }, {
+        "type": "text",
+        "id": "terms_title",
+        "label": "Terms Title",
+        "default": "Terms"
+      }, {
+        "type": "text",
+        "id": "terms_link",
+        "label": "Terms Link",
+        "default": "https://www.drumeo.com/terms"
+      }, {
+        "type": "text",
+        "id": "privacy_title",
+        "label": "Privacy Title",
+        "default": "Privacy"
+      }, {
+        "type": "text",
+        "id": "privacy_link",
+        "label": "Privacy Link",
+        "default": "https://www.drumeo.com/privacy"
+      }, {
+        "type": "text",
+        "id": "careers_title",
+        "label": "Careers Title",
+        "default": "Careers"
+      }, {
+        "type": "text",
+        "id": "careers_link",
+        "label": "Careers Link",
+        "default": "https://www.musora.com/careers"
+      }, {
+        "type": "text",
+        "id": "brand_guide_title",
+        "label": "Brand Guide Title",
+        "default": "Brand Guide"
+      }, {
+        "type": "text",
+        "id": "brand_guide_link",
+        "label": "Brand Guide Link",
+        "default": "https://www.musora.com/brand"
       }
     ]
   }
