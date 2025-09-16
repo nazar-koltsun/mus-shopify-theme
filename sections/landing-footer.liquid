@@ -1,5 +1,101 @@
 {{ 'landing-footer.css' | asset_url | stylesheet_tag }}
 
 <div class="landing-footer">
-  Landing footer
+  <div class="landing-footer-top">
+
+    <div class="landing-footer-top-wrap">
+      <div class="landing-footer-connect">
+        <h3 class="landing-footer-connect-title landing-footer-title">
+          {{ section.settings.connect_title }}
+        </h3>
+        <p class="landing-footer-connect-desc">
+          {{ section.settings.connect_desc }}
+        </p>
+
+        {% form 'customer'
+          , id: 'ContactFooter'
+          , class: 'landing-newsletter-form' %}
+
+          <div class="landing-newsletter-form-wrap">
+            <input
+              type="email"
+              name="contact[email]"
+              id="NewsletterForm--footer"
+              class="newsletter-input"
+              placeholder="Email Address..."
+              required>
+
+            <button type="submit" class="newsletter-btn btn">
+              {{ section.settings.subscribe_button_text }}
+            </button>
+          </div>
+
+          {% if form.posted_successfully? %}
+            <p class="newsletter-success">{{ section.settings.subscribe_success_text }}</p>
+          {% elsif form.errors %}
+            <p class="newsletter-error">{{ form.errors | default_errors }}</p>
+          {% endif %}
+        {% endform %}
+
+        <div class="landing-footer-apps">
+          <a href="{{ section.settings.app_store_link }}" target="_blank">
+            <img src="{{ 'apple-store.png' | asset_url }}" width="139" height="42" alt="App Store">
+          </a>
+          <a href="{{ section.settings.google_play_link }}" target="_blank">
+            <img src="{{ 'google-play.png' | asset_url }}" width="140" height="42" alt="Google Play">
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Landing Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Connect Form"
+      },
+      {
+        "type": "text",
+        "id": "connect_title",
+        "label": "Connect Title",
+        "default": "STAY CONNECTED"
+      },
+      {
+        "type": "text",
+        "id": "connect_desc",
+        "label": "Connect Description",
+        "default": "Join over 400,000 drummers who receive free weekly drum lessons."
+      },
+      {
+        "type": "text",
+        "id": "subscribe_button_text",
+        "label": "Subscribe Button Text",
+        "default": "SIGN UP"
+      }, {
+        "type": "text",
+        "id": "subscribe_success_text",
+        "label": "Subscribe Success Text",
+        "default": "Thanks for subscribing!"
+      }, {
+        "type": "header",
+        "content": "Download Apps"
+      }, {
+        "type": "text",
+        "id": "app_store_link",
+        "label": "App Store Link",
+        "default": "https://apps.apple.com/us/app/musora-the-music-lessons-app/id1460388277"
+      }, {
+        "type": "text",
+        "id": "google_play_link",
+        "label": "Google Play Link",
+        "default": "https://play.google.com/store/apps/details?id=com.drumeo"
+      }
+    ]
+  }
+{% endschema %}
